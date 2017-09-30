@@ -6,9 +6,10 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
+  devtool: 'source-map',
   module: {
     rules: [{
-      test: /\.jsx?$/,
+      test: /\.(js|jsx)$/,
       exclude: /(node_modules)/,
       use: {
         loader: 'babel-loader',
@@ -17,5 +18,8 @@ module.exports = {
   },
   devServer: {
     publicPath: '/dist/',
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
   },
 };
