@@ -1,49 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { generate as generateId } from 'shortid';
 
-class ItemForm extends React.Component {
-  static propTypes = {
-    addItem: PropTypes.func.isRequired,
-  }
+const ItemForm = props => (
+  <form onSubmit={props.handleSubmit}>
+    <input
+      value={props.text}
+      onChange={props.handleInputChange}
+    />
+    <button
+      type="submit"
+      disabled={props.text.length < 1}
+    >Add</button>
+  </form>
+);
 
-  state = {
-    text: '',
-  }
+ItemForm.propTypes = {
+  handleInputChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  text: PropTypes.string,
+};
 
-  handleInputChange = (event) => {
-    event.preventDefault();
-    this.setState({
-      text: event.target.value,
-    });
-  }
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-    const item = {
-      id: generateId(),
-      text: this.state.text,
-    };
-    this.props.addItem(item);
-    this.setState({
-      text: '',
-    });
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          value={this.state.text}
-          onChange={this.handleInputChange}
-        />
-        <button
-          type="submit"
-          disabled={this.state.text.length < 1}
-        >Add</button>
-      </form>
-    );
-  }
-}
+ItemForm.defaultProps = {
+  text: '',
+};
 
 export default ItemForm;

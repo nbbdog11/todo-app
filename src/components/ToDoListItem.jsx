@@ -7,6 +7,7 @@ const ToDoListItem = props => (
     <button onClick={() => props.deleteItem(props.id)}>Delete</button>
   </div>
 );
+
 ToDoListItem.propTypes = {
   deleteItem: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,

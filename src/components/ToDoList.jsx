@@ -1,47 +1,36 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ToDoListItem from './ToDoListItem';
-import ItemForm from './ItemForm';
+import ItemFormContainer from '../containers/ItemFormContainer';
 
-class ToDoList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: [],
-    };
-  }
+const buildToDoListItem = (item, deleteItemFn) => (
+  <ToDoListItem
+    deleteItem={deleteItemFn}
+    id={item.id}
+    key={item.id}
+    text={item.text}
+  />
+);
 
-  addItem = (item) => {
-    this.setState(prevState => ({
-      items: [...prevState.items, item],
-    }));
-  }
+const buildToDoListItems = (items, deleteItemFn) =>
+  items.map(item => buildToDoListItem(item, deleteItemFn));
 
-  deleteItem = (id) => {
-    const items = this.state.items.filter(item => item.id !== id);
-    this.setState({
-      items,
-    });
-  }
+const ToDoList = props => (
+  <div>
+    <p>{`List size: ${props.items.length}`}</p>
+    <ItemFormContainer addItem={props.addItem} />
+    {buildToDoListItems(props.items, props.deleteItem)}
+  </div>
+);
 
-  render() {
-    const buildToDoListItem = item => (
-      <ToDoListItem
-        deleteItem={this.deleteItem}
-        id={item.id}
-        key={item.id}
-        text={item.text}
-      />
-    );
-    const toDoListItems = this.state.items.map(buildToDoListItem);
+ToDoList.propTypes = {
+  addItem: PropTypes.func.isRequired,
+  deleteItem: PropTypes.func.isRequired,
+  items: PropTypes.arrayOf(PropTypes.object),
+};
 
-    return (
-      <div>
-        <p>{`List size: ${this.state.items.length}`}</p>
-        <ItemForm addItem={this.addItem} />
-        {toDoListItems}
-      </div>
-    );
-  }
-}
+ToDoList.defaultProps = {
+  items: [],
+};
 
 export default ToDoList;
