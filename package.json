@@ -1,0 +1,32 @@
+{
+  "name": "todo-app",
+  "version": "0.1.0",
+  "description": "To Do App implementation in React",
+  "repository": "git@github.com:nbbdog11/todo-app.git",
+  "author": "Scott Wagner <scottywags16@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "lint": "gulp lint",
+    "build": "webpack",
+    "dev-server": "webpack-dev-server"
+  },
+  "dependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^4.8.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.4.0",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^4.0.0",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
+  }
+}
