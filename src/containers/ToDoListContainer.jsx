@@ -19,11 +19,26 @@ class ToDoListContainer extends React.Component {
     });
   }
 
+  editItem = (id, text) => {
+    const items = this.state.items.map((item) => {
+      if (item.id !== id) {
+        return item;
+      }
+      return Object.assign({}, item, {
+        text,
+      });
+    });
+    this.setState({
+      items,
+    });
+  }
+
   render() {
     return (
       <ToDoList
         addItem={this.addItem}
         deleteItem={this.deleteItem}
+        editItem={this.editItem}
         items={this.state.items}
       />
     );
