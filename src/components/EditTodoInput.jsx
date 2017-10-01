@@ -1,7 +1,7 @@
 import React from 'react';
 import PropType from 'prop-types';
 
-class EditItemInput extends React.Component {
+class EditTodoInput extends React.Component {
   static propTypes = {
     defaultValue: PropType.string,
     handleInput: PropType.func.isRequired,
@@ -13,7 +13,7 @@ class EditItemInput extends React.Component {
   };
 
   componentDidMount() {
-    this.itemInput.focus();
+    this.todoInput.focus();
   }
 
   render() {
@@ -23,7 +23,7 @@ class EditItemInput extends React.Component {
           defaultValue={this.props.defaultValue}
           onBlur={this.props.saveChanges}
           onChange={this.props.handleInput}
-          ref={(input) => { this.itemInput = input; }}
+          ref={(input) => { this.todoInput = input; }}
           type="text"
         />
       </form>
@@ -31,4 +31,4 @@ class EditItemInput extends React.Component {
   }
 }
 
-export default EditItemInput;
+export default EditTodoInput;

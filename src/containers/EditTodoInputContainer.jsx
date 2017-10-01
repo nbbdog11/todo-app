@@ -1,6 +1,6 @@
 import React from 'react';
 import PropType from 'prop-types';
-import EditItemInput from '../components/EditItemInput';
+import EditTodoInput from '../components/EditTodoInput';
 
 class EditItemInputContainer extends React.Component {
   static propTypes = {
@@ -30,7 +30,7 @@ class EditItemInputContainer extends React.Component {
 
   render() {
     return (
-      <EditItemInput
+      <EditTodoInput
         defaultValue={this.props.defaultValue}
         handleInput={this.handleInput}
         saveChanges={this.saveChanges}

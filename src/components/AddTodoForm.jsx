@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ItemForm = props => (
+const AddTodoForm = props => (
   <form onSubmit={props.handleSubmit}>
     <input
       value={props.text}
@@ -14,14 +14,14 @@ const ItemForm = props => (
   </form>
 );
 
-ItemForm.propTypes = {
+AddTodoForm.propTypes = {
   handleInputChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   text: PropTypes.string,
 };
 
-ItemForm.defaultProps = {
+AddTodoForm.defaultProps = {
   text: '',
 };
 
-export default ItemForm;
+export default AddTodoForm;

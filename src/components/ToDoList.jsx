@@ -1,38 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ToDoListItemContainer from '../containers/ToDoListItemContainer';
-import ItemFormContainer from '../containers/ItemFormContainer';
+import AddTodoFormContainer from '../containers/AddTodoFormContainer';
 
-const buildToDoListItem = (item, deleteItemFn, editItemFn) => (
+const buildToDoListItem = item => (
   <ToDoListItemContainer
-    deleteItem={deleteItemFn}
-    saveEdit={editItemFn}
     id={item.id}
     key={item.id}
     text={item.text}
   />
 );
 
-const buildToDoListItems = (items, deleteItemFn, editItemFn) =>
-  items.map(item => buildToDoListItem(item, deleteItemFn, editItemFn));
+const buildToDoListItems = items =>
+  items.map(item => buildToDoListItem(item));
 
 const ToDoList = props => (
   <div>
-    <p>{`List size: ${props.items.length}`}</p>
-    <ItemFormContainer addItem={props.addItem} />
-    {buildToDoListItems(props.items, props.deleteItem, props.editItem)}
+    <p>{`List size: ${props.todos.length}`}</p>
+    <AddTodoFormContainer />
+    {buildToDoListItems(props.todos)}
   </div>
 );
 
 ToDoList.propTypes = {
-  addItem: PropTypes.func.isRequired,
-  deleteItem: PropTypes.func.isRequired,
-  editItem: PropTypes.func.isRequired,
-  items: PropTypes.arrayOf(PropTypes.object),
+  todos: PropTypes.arrayOf(PropTypes.object),
 };
 
 ToDoList.defaultProps = {
-  items: [],
+  todos: [],
 };
 
 export default ToDoList;

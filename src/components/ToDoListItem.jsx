@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import EditItemInputContainer from '../containers/EditItemInputContainer';
+import EditTodoInputContainer from '../containers/EditTodoInputContainer';
 
 const ToDoListItem = (props) => {
   const textElement = props.isEditing ?
-    (<EditItemInputContainer
+    (<EditTodoInputContainer
       defaultValue={props.text}
       save={text => props.saveEdit(props.id, text)}
     />) :
@@ -12,15 +12,15 @@ const ToDoListItem = (props) => {
   return (
     <div>
       {textElement}
-      <button onClick={() => props.editItem(props.id)}>Edit</button>
-      <button onClick={() => props.deleteItem(props.id)}>Delete</button>
+      <button onClick={() => props.editTodo(props.id)}>Edit</button>
+      <button onClick={() => props.deleteTodo(props.id)}>Delete</button>
     </div>
   );
 };
 
 ToDoListItem.propTypes = {
-  deleteItem: PropTypes.func.isRequired,
-  editItem: PropTypes.func.isRequired,
+  deleteTodo: PropTypes.func.isRequired,
+  editTodo: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   isEditing: PropTypes.bool,
   saveEdit: PropTypes.func.isRequired,

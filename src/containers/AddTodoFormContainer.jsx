@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { generate as generateId } from 'shortid';
-import ItemForm from '../components/ItemForm';
+import { connect } from 'react-redux';
+import { addTodo } from '../state/actions/actionCreators';
+import AddTodoForm from '../components/AddTodoForm';
 
-class ItemFormContainer extends React.Component {
+class AddTodoFormContainer extends React.Component {
   static propTypes = {
-    addItem: PropTypes.func.isRequired,
+    addTodo: PropTypes.func.isRequired,
   }
 
   state = {
@@ -21,11 +23,11 @@ class ItemFormContainer extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const item = {
+    const todo = {
       id: generateId(),
       text: this.state.text,
     };
-    this.props.addItem(item);
+    this.props.addTodo(todo);
     this.setState({
       text: '',
     });
@@ -33,7 +35,7 @@ class ItemFormContainer extends React.Component {
 
   render() {
     return (
-      <ItemForm
+      <AddTodoForm
         handleInputChange={this.handleInputChange}
         handleSubmit={this.handleSubmit}
         text={this.state.text}
@@ -42,4 +44,13 @@ class ItemFormContainer extends React.Component {
   }
 }
 
-export default ItemFormContainer;
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = dispatch => ({
+  addTodo: todo => dispatch(addTodo(todo)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(AddTodoFormContainer);

@@ -1,39 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import {
+  deleteTodo,
+  editTodo,
+  saveEdit,
+} from '../state/actions/actionCreators';
 import ToDoListItem from '../components/ToDoListItem';
 
 class ToDoListItemContainer extends React.Component {
   static propTypes = {
-    deleteItem: PropTypes.func.isRequired,
+    deleteTodo: PropTypes.func.isRequired,
+    editTodo: PropTypes.func.isRequired,
     id: PropTypes.string.isRequired,
+    isEditing: PropTypes.bool,
     saveEdit: PropTypes.func.isRequired,
     text: PropTypes.string.isRequired,
   }
 
-  state = {
+  static defaultProps = {
     isEditing: false,
-  }
-
-  editItem = () => {
-    this.setState({
-      isEditing: true,
-    });
   }
 
   saveEdit = (id, text) => {
     this.props.saveEdit(id, text);
-    this.setState({
-      isEditing: false,
-    });
   }
 
   render() {
     return (
       <ToDoListItem
-        deleteItem={this.props.deleteItem}
-        editItem={this.editItem}
+        deleteTodo={this.props.deleteTodo}
+        editTodo={this.props.editTodo}
         id={this.props.id}
-        isEditing={this.state.isEditing}
+        isEditing={this.props.isEditing}
         saveEdit={this.saveEdit}
         text={this.props.text}
       />
@@ -41,4 +40,17 @@ class ToDoListItemContainer extends React.Component {
   }
 }
 
-export default ToDoListItemContainer;
+const mapStateToProps = (state, ownProps) => ({
+  isEditing: state.activeEdits.some(edit => edit.id === ownProps.id),
+});
+
+const mapDispatchToProps = dispatch => ({
+  deleteTodo: id => dispatch(deleteTodo(id)),
+  editTodo: (id, text) => dispatch(editTodo(id, text)),
+  saveEdit: (id, text) => dispatch(saveEdit(id, text)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ToDoListItemContainer);

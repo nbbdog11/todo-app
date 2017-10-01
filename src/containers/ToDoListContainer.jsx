@@ -1,48 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import ToDoList from '../components/ToDoList';
 
-class ToDoListContainer extends React.Component {
-  state = {
-    items: [],
-  }
+const ToDoListContainer = props => (
+  <ToDoList
+    todos={props.todos}
+  />
+);
 
-  addItem = (item) => {
-    this.setState(prevState => ({
-      items: [...prevState.items, item],
-    }));
-  }
+ToDoListContainer.propTypes = {
+  todos: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
-  deleteItem = (id) => {
-    const items = this.state.items.filter(item => item.id !== id);
-    this.setState({
-      items,
-    });
-  }
+const mapStateToProps = state => ({
+  todos: state.todos,
+});
 
-  editItem = (id, text) => {
-    const items = this.state.items.map((item) => {
-      if (item.id !== id) {
-        return item;
-      }
-      return Object.assign({}, item, {
-        text,
-      });
-    });
-    this.setState({
-      items,
-    });
-  }
-
-  render() {
-    return (
-      <ToDoList
-        addItem={this.addItem}
-        deleteItem={this.deleteItem}
-        editItem={this.editItem}
-        items={this.state.items}
-      />
-    );
-  }
-}
-
-export default ToDoListContainer;
+export default connect(mapStateToProps)(ToDoListContainer);
