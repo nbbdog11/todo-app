@@ -6,7 +6,7 @@
   "author": "Scott Wagner <scottywags16@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "lint": "gulp lint",
+    "lint": "eslint ./src/**/*.js ./src/**/*.jsx",
     "build": "webpack",
     "dev-server": "webpack-dev-server",
     "test": "jest"
@@ -33,8 +33,6 @@
     "eslint-plugin-jest": "^21.2.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.4.0",
-    "gulp": "^3.9.1",
-    "gulp-eslint": "^4.0.0",
     "jest": "^21.2.1",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.1"
