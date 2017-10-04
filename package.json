@@ -6,7 +6,7 @@
   "author": "Scott Wagner <scottywags16@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint ./src/**/*.js ./src/**/*.jsx",
+    "lint": "eslint ./src/**/*.js ./src/**/*.jsx ./__test__/**/*.js",
     "build": "webpack",
     "dev-server": "webpack-dev-server",
     "test": "jest"
