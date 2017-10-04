@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint ./src/**/*.js ./src/**/*.jsx ./__test__/**/*.js",
-    "build": "webpack",
+    "build": "npm run lint && npm run test && webpack",
     "dev-server": "webpack-dev-server",
     "test": "jest"
   },
