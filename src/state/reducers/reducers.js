@@ -17,22 +17,12 @@ const deleteTodo = (state, id) => {
   });
 };
 
-const editTodo = (state, id, text) => {
-  const alreadyEditing = state.activeEdits.some(edit => edit.id === id);
+const editTodo = (state, id) => {
+  const alreadyEditing = state.activeEdits.some(edit => edit === id);
   if (alreadyEditing) {
-    const activeEdits = state.activeEdits.map((edit) => {
-      if (edit.id === id) {
-        return Object.assign({}, edit, {
-          text,
-        });
-      }
-      return edit;
-    });
-    return Object.assign({}, state, {
-      activeEdits,
-    });
+    return state;
   }
-  const activeEdits = [...state.activeEdits, { id, text }];
+  const activeEdits = [...state.activeEdits, id];
   return Object.assign({}, state, {
     activeEdits,
   });
@@ -47,7 +37,7 @@ const saveEdit = (state, id, text) => {
       text,
     });
   });
-  const activeEdits = state.activeEdits.filter(edit => edit.id !== id);
+  const activeEdits = state.activeEdits.filter(edit => edit !== id);
   return Object.assign({}, state, {
     todos,
     activeEdits,
@@ -61,7 +51,7 @@ const todoAppReducer = (state = { todos: [], activeEdits: [] }, action) => {
     case DELETE_TODO:
       return deleteTodo(state, action.id);
     case EDIT_TODO:
-      return editTodo(state, action.id, action.text);
+      return editTodo(state, action.id);
     case SAVE_EDIT:
       return saveEdit(state, action.id, action.text);
     default:

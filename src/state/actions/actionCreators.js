@@ -15,10 +15,9 @@ const deleteTodo = id => ({
   id,
 });
 
-const editTodo = (id, text) => ({
+const editTodo = id => ({
   type: EDIT_TODO,
   id,
-  text,
 });
 
 const saveEdit = (id, text) => ({

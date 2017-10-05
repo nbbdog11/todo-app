@@ -55,19 +55,11 @@ describe('editTodo', () => {
   });
 
   test('returns id passed in', () => {
-    const id = '1234';
+    const id = '123';
 
     const result = editTodo(id);
 
     expect(result.id).toBe(id);
-  });
-
-  test('returns text passed in', () => {
-    const text = 'the new text for the todo';
-
-    const result = editTodo('anyid', text);
-
-    expect(result.text).toBe(text);
   });
 });
 

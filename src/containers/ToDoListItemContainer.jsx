@@ -41,12 +41,12 @@ class ToDoListItemContainer extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  isEditing: state.activeEdits.some(edit => edit.id === ownProps.id),
+  isEditing: state.activeEdits.some(edit => edit === ownProps.id),
 });
 
 const mapDispatchToProps = dispatch => ({
   deleteTodo: id => dispatch(deleteTodo(id)),
-  editTodo: (id, text) => dispatch(editTodo(id, text)),
+  editTodo: id => dispatch(editTodo(id)),
   saveEdit: (id, text) => dispatch(saveEdit(id, text)),
 });
 
