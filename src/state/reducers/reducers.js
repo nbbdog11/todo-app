@@ -28,7 +28,7 @@ const editTodo = (state, id) => {
   });
 };
 
-const saveEdit = (state, id, text) => {
+const saveEdit = (state, { id, text }) => {
   const todos = state.todos.map((todo) => {
     if (todo.id !== id) {
       return todo;
@@ -53,7 +53,7 @@ const todoAppReducer = (state = { todos: [], activeEdits: [] }, action) => {
     case EDIT_TODO:
       return editTodo(state, action.id);
     case SAVE_EDIT:
-      return saveEdit(state, action.id, action.text);
+      return saveEdit(state, action.todo);
     default:
       break;
   }

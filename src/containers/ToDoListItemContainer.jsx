@@ -22,10 +22,6 @@ class ToDoListItemContainer extends React.Component {
     isEditing: false,
   }
 
-  saveEdit = (id, text) => {
-    this.props.saveEdit(id, text);
-  }
-
   render() {
     return (
       <ToDoListItem
@@ -33,7 +29,7 @@ class ToDoListItemContainer extends React.Component {
         editTodo={this.props.editTodo}
         id={this.props.id}
         isEditing={this.props.isEditing}
-        saveEdit={this.saveEdit}
+        saveEdit={this.props.saveEdit}
         text={this.props.text}
       />
     );
@@ -47,7 +43,7 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = dispatch => ({
   deleteTodo: id => dispatch(deleteTodo(id)),
   editTodo: id => dispatch(editTodo(id)),
-  saveEdit: (id, text) => dispatch(saveEdit(id, text)),
+  saveEdit: todo => dispatch(saveEdit(todo)),
 });
 
 export default connect(

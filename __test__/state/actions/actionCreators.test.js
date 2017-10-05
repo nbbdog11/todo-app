@@ -70,19 +70,16 @@ describe('saveEdit', () => {
     expect(result.type).toBe(SAVE_EDIT);
   });
 
-  test('saveEdit returns id passed in', () => {
+  test('saveEdit returns todo passed in', () => {
     const id = '1234';
-
-    const result = saveEdit(id);
-
-    expect(result.id).toBe(id);
-  });
-
-  test('saveEdit returns text passed in', () => {
     const text = 'the new text for the todo';
+    const saveTodo = {
+      id,
+      text,
+    };
 
-    const result = saveEdit('anyid', text);
+    const result = saveEdit(saveTodo);
 
-    expect(result.text).toBe(text);
+    expect(result.todo).toBe(saveTodo);
   });
 });

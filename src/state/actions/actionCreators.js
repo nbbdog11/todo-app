@@ -20,10 +20,9 @@ const editTodo = id => ({
   id,
 });
 
-const saveEdit = (id, text) => ({
+const saveEdit = todo => ({
   type: SAVE_EDIT,
-  id,
-  text,
+  todo,
 });
 
 export {

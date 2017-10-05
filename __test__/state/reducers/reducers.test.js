@@ -117,21 +117,24 @@ describe('todoAppReducer', () => {
       id: idForEdit,
       text: 'should be updated',
     };
+    const updatedTodo = {
+      id: idForEdit,
+      text: expectedTodoText,
+    };
     const originalState = {
       todos: [firstTodo, todoForEdit],
       activeEdits: [],
     };
     const saveEditAction = {
       type: SAVE_EDIT,
-      id: idForEdit,
-      text: expectedTodoText,
+      todo: updatedTodo,
     };
 
     const result = todoAppReducer(originalState, saveEditAction);
-    const updatedTodosResult = result.todos.filter(item => item.id === idForEdit);
 
-    expect(updatedTodosResult).toHaveLength(1);
-    expect(updatedTodosResult[0]).toHaveProperty('text', expectedTodoText);
+    expect(result.todos).toHaveLength(2);
+    expect(result.todos).toContain(firstTodo);
+    expect(result.todos).toContainEqual(updatedTodo);
   });
 
   test('removes saved edit from active edits', () => {
@@ -139,11 +142,9 @@ describe('todoAppReducer', () => {
     const idThatShouldRemain = '123';
     const firstTodo = {
       id: idThatShouldRemain,
-      text: 'todo text',
     };
     const todoForEdit = {
       id: idForEdit,
-      text: 'should be updated',
     };
     const originalState = {
       todos: [firstTodo, todoForEdit],
@@ -151,8 +152,9 @@ describe('todoAppReducer', () => {
     };
     const saveEditAction = {
       type: SAVE_EDIT,
-      id: idForEdit,
-      text: 'updated text',
+      todo: {
+        id: idForEdit,
+      },
     };
 
     const result = todoAppReducer(originalState, saveEditAction);

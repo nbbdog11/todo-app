@@ -3,12 +3,20 @@ import PropTypes from 'prop-types';
 import EditTodoInputContainer from '../containers/EditTodoInputContainer';
 
 const ToDoListItem = (props) => {
+  const saveTodo = (text) => {
+    const todo = {
+      id: props.id,
+      text,
+    };
+    props.saveEdit(todo);
+  };
   const textElement = props.isEditing ?
     (<EditTodoInputContainer
       defaultValue={props.text}
-      save={text => props.saveEdit(props.id, text)}
+      save={saveTodo}
     />) :
     <span>{props.text}</span>;
+
   return (
     <div>
       {textElement}
