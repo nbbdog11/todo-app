@@ -54,7 +54,6 @@ const saveEdit = (state, id, text) => {
   });
 };
 
-
 const todoAppReducer = (state = { todos: [], activeEdits: [] }, action) => {
   switch (action.type) {
     case ADD_TODO:
