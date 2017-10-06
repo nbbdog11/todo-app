@@ -64,13 +64,13 @@ describe('editTodo', () => {
 });
 
 describe('saveEdit', () => {
-  test('saveEdit uses SAVE_EDIT type', () => {
+  test('uses SAVE_EDIT type', () => {
     const result = saveEdit();
 
     expect(result.type).toBe(SAVE_EDIT);
   });
 
-  test('saveEdit returns todo passed in', () => {
+  test('returns todo passed in', () => {
     const id = '1234';
     const text = 'the new text for the todo';
     const saveTodo = {
