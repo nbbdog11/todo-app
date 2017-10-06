@@ -8,7 +8,7 @@ const AddTodoForm = props => (
       onChange={props.handleInputChange}
     />
     <button
-      type="submit"
+      onClick={props.handleSubmit}
       disabled={props.text.length < 1}
     >Add</button>
   </form>
