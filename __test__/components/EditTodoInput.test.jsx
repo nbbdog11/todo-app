@@ -1,11 +1,10 @@
 import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import dummyFn from '../helpers/test-helpers';
 import EditTodoInput from '../../src/components/EditTodoInput';
 
 Enzyme.configure({ adapter: new Adapter() });
-
-const dummyFn = () => { };
 
 describe('EditTodoInput', () => {
   it('renders without an error', () => {
@@ -20,10 +19,12 @@ describe('EditTodoInput', () => {
 
   describe('saves changes', () => {
     const saveChanges = jest.fn();
-    const subject = (<EditTodoInput
-      handleInput={dummyFn}
-      saveChanges={saveChanges}
-    />);
+    const subject = (
+      <EditTodoInput
+        handleInput={dummyFn}
+        saveChanges={saveChanges}
+      />
+    );
     const component = mount(subject);
 
     afterEach(() => {

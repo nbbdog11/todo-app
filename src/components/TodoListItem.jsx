@@ -3,6 +3,16 @@ import PropTypes from 'prop-types';
 import EditTodoInputContainer from '../containers/EditTodoInputContainer';
 
 const TodoListItem = (props) => {
+  const deleteTodo = () => {
+    props.deleteTodo(props.id);
+  };
+
+  const editTodo = () => {
+    if (!props.isEditing) {
+      props.editTodo(props.id);
+    }
+  };
+
   const saveTodo = (text) => {
     const todo = {
       id: props.id,
@@ -10,6 +20,7 @@ const TodoListItem = (props) => {
     };
     props.saveEdit(todo);
   };
+
   const textElement = props.isEditing ?
     (<EditTodoInputContainer
       defaultValue={props.text}
@@ -20,8 +31,13 @@ const TodoListItem = (props) => {
   return (
     <div>
       {textElement}
-      <button onClick={() => props.editTodo(props.id)}>Edit</button>
-      <button onClick={() => props.deleteTodo(props.id)}>Delete</button>
+      <button
+        disabled={props.isEditing}
+        onClick={editTodo}
+      >Edit</button>
+      <button
+        onClick={deleteTodo}
+      >Delete</button>
     </div>
   );
 };
