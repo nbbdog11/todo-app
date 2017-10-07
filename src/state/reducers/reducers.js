@@ -1,7 +1,6 @@
 import {
   ADD_TODO,
   DELETE_TODO,
-  EDIT_TODO,
   SAVE_EDIT,
 } from '../actions/actionTypes';
 
@@ -17,17 +16,6 @@ const deleteTodo = (state, id) => {
   });
 };
 
-const editTodo = (state, id) => {
-  const alreadyEditing = state.activeEdits.some(edit => edit === id);
-  if (alreadyEditing) {
-    return state;
-  }
-  const activeEdits = [...state.activeEdits, id];
-  return Object.assign({}, state, {
-    activeEdits,
-  });
-};
-
 const saveEdit = (state, { id, text }) => {
   const todos = state.todos.map((todo) => {
     if (todo.id !== id) {
@@ -37,10 +25,9 @@ const saveEdit = (state, { id, text }) => {
       text,
     });
   });
-  const activeEdits = state.activeEdits.filter(edit => edit !== id);
+
   return Object.assign({}, state, {
     todos,
-    activeEdits,
   });
 };
 
@@ -50,8 +37,6 @@ const todoAppReducer = (state = { todos: [], activeEdits: [] }, action) => {
       return addTodo(state, action.todo);
     case DELETE_TODO:
       return deleteTodo(state, action.id);
-    case EDIT_TODO:
-      return editTodo(state, action.id);
     case SAVE_EDIT:
       return saveEdit(state, action.todo);
     default:

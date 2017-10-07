@@ -1,14 +1,12 @@
 import {
   ADD_TODO,
   DELETE_TODO,
-  EDIT_TODO,
   SAVE_EDIT,
 } from '../../../src/state/actions/actionTypes';
 
 import {
   addTodo,
   deleteTodo,
-  editTodo,
   saveEdit,
 } from '../../../src/state/actions/actionCreators';
 
@@ -42,22 +40,6 @@ describe('deleteTodo', () => {
     const id = '1234';
 
     const result = deleteTodo(id);
-
-    expect(result.id).toBe(id);
-  });
-});
-
-describe('editTodo', () => {
-  test('uses EDIT_TODO type', () => {
-    const result = editTodo();
-
-    expect(result.type).toBe(EDIT_TODO);
-  });
-
-  test('returns id passed in', () => {
-    const id = '123';
-
-    const result = editTodo(id);
 
     expect(result.id).toBe(id);
   });

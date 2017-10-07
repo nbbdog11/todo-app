@@ -1,7 +1,6 @@
 import {
   ADD_TODO,
   DELETE_TODO,
-  EDIT_TODO,
   SAVE_EDIT,
 } from './actionTypes';
 
@@ -15,11 +14,6 @@ const deleteTodo = id => ({
   id,
 });
 
-const editTodo = id => ({
-  type: EDIT_TODO,
-  id,
-});
-
 const saveEdit = todo => ({
   type: SAVE_EDIT,
   todo,
@@ -28,6 +22,5 @@ const saveEdit = todo => ({
 export {
   addTodo,
   deleteTodo,
-  editTodo,
   saveEdit,
 };
