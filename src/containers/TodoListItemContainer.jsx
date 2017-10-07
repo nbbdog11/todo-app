@@ -5,9 +5,9 @@ import {
   deleteTodo,
   saveEdit,
 } from '../state/actions/actionCreators';
-import ToDoListItem from '../components/ToDoListItem';
+import TodoListItem from '../components/TodoListItem';
 
-class ToDoListItemContainer extends React.Component {
+class TodoListItemContainer extends React.Component {
   static propTypes = {
     deleteTodo: PropTypes.func.isRequired,
     id: PropTypes.string.isRequired,
@@ -34,7 +34,7 @@ class ToDoListItemContainer extends React.Component {
 
   render() {
     return (
-      <ToDoListItem
+      <TodoListItem
         deleteTodo={this.props.deleteTodo}
         editTodo={this.editTodo}
         id={this.props.id}
@@ -58,4 +58,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ToDoListItemContainer);
+)(TodoListItemContainer);

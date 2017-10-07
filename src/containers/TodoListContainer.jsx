@@ -1,15 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import ToDoList from '../components/ToDoList';
+import TodoList from '../components/TodoList';
 
-const ToDoListContainer = props => (
-  <ToDoList
+const TodoListContainer = props => (
+  <TodoList
     todos={props.todos}
   />
 );
 
-ToDoListContainer.propTypes = {
+TodoListContainer.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
@@ -17,4 +17,4 @@ const mapStateToProps = state => ({
   todos: state.todos,
 });
 
-export default connect(mapStateToProps)(ToDoListContainer);
+export default connect(mapStateToProps)(TodoListContainer);

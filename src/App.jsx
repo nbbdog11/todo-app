@@ -2,11 +2,11 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import ToDoListContainer from './containers/ToDoListContainer';
+import TodoListContainer from './containers/TodoListContainer';
 import todoListReducer from './state/reducers/reducers';
 import './shared.css';
 
-const App = () => (<ToDoListContainer />);
+const App = () => (<TodoListContainer />);
 
 const store = createStore(todoListReducer);
 

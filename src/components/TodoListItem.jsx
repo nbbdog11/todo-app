@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import EditTodoInputContainer from '../containers/EditTodoInputContainer';
 
-const ToDoListItem = (props) => {
+const TodoListItem = (props) => {
   const saveTodo = (text) => {
     const todo = {
       id: props.id,
@@ -26,7 +26,7 @@ const ToDoListItem = (props) => {
   );
 };
 
-ToDoListItem.propTypes = {
+TodoListItem.propTypes = {
   deleteTodo: PropTypes.func.isRequired,
   editTodo: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
@@ -35,8 +35,8 @@ ToDoListItem.propTypes = {
   text: PropTypes.string.isRequired,
 };
 
-ToDoListItem.defaultProps = {
+TodoListItem.defaultProps = {
   isEditing: false,
 };
 
-export default ToDoListItem;
+export default TodoListItem;
