@@ -1,5 +1,6 @@
 import React from 'react';
 import PropType from 'prop-types';
+import formStyle from '../styles/form';
 
 class EditTodoInput extends React.Component {
   static propTypes = {
@@ -18,7 +19,10 @@ class EditTodoInput extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.props.saveChanges}>
+      <form
+        onSubmit={this.props.saveChanges}
+        style={formStyle}
+      >
         <input
           defaultValue={this.props.defaultValue}
           onBlur={this.props.saveChanges}
