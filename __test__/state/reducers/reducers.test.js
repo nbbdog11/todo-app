@@ -48,33 +48,64 @@ describe('todoAppReducer', () => {
     expect(resultTodos).toContain(newTodo);
   });
 
-  it('sets completed to true when action is complete', () => {
-    const idForComplete = '456';
-    const firstTodo = {
-      id: '123',
-      text: 'todo text',
-      completed: false,
-    };
-    const todoForComplete = {
-      id: idForComplete,
-      text: 'complete todo',
-      completed: false,
-    };
-    const completedTodo = Object.assign({}, todoForComplete, { completed: true });
-    const originalState = {
-      todos: [firstTodo, todoForComplete],
-    };
-    const completeAction = {
-      type: COMPLETE_TODO,
-      id: idForComplete,
-    };
+  describe('completion actions', () => {
+    it('sets completed to true when action is complete', () => {
+      const idForComplete = '456';
+      const firstTodo = {
+        id: '123',
+        text: 'todo text',
+        completed: false,
+      };
+      const todoForComplete = {
+        id: idForComplete,
+        text: 'complete todo',
+        completed: false,
+      };
+      const completedTodo = Object.assign({}, todoForComplete, { completed: true });
+      const originalState = {
+        todos: [firstTodo, todoForComplete],
+      };
+      const completeAction = {
+        type: COMPLETE_TODO,
+        id: idForComplete,
+      };
 
-    const result = todoAppReducer(originalState, completeAction);
-    const resultTodos = result.todos;
+      const result = todoAppReducer(originalState, completeAction);
+      const resultTodos = result.todos;
 
-    expect(resultTodos).toHaveLength(2);
-    expect(resultTodos).toContain(firstTodo);
-    expect(resultTodos).toContainEqual(completedTodo);
+      expect(resultTodos).toHaveLength(2);
+      expect(resultTodos).toContain(firstTodo);
+      expect(resultTodos).toContainEqual(completedTodo);
+    });
+
+    it('sets completed to false when action is incomplete', () => {
+      const idForIncomplete = '456';
+      const firstTodo = {
+        id: '123',
+        text: 'todo text',
+        completed: false,
+      };
+      const todoForIncomplete = {
+        id: idForIncomplete,
+        text: 'incomplete todo',
+        completed: true,
+      };
+      const incompletedTodo = Object.assign({}, todoForIncomplete, { completed: false });
+      const originalState = {
+        todos: [firstTodo, todoForIncomplete],
+      };
+      const incompleteAction = {
+        type: 'INCOMPLETE_TODO',
+        id: idForIncomplete,
+      };
+
+      const result = todoAppReducer(originalState, incompleteAction);
+      const resultTodos = result.todos;
+
+      expect(resultTodos).toHaveLength(2);
+      expect(resultTodos).toContain(firstTodo);
+      expect(resultTodos).toContainEqual(incompletedTodo);
+    });
   });
 
   it('deletes todo when action is delete', () => {

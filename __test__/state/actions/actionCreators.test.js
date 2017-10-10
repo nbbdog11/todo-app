@@ -2,6 +2,7 @@ import {
   ADD_TODO,
   COMPLETE_TODO,
   DELETE_TODO,
+  INCOMPLETE_TODO,
   SAVE_EDIT,
 } from '../../../src/state/actions/actionTypes';
 
@@ -9,6 +10,7 @@ import {
   addTodo,
   completeTodo,
   deleteTodo,
+  incompleteTodo,
   saveEdit,
 } from '../../../src/state/actions/actionCreators';
 
@@ -58,6 +60,22 @@ describe('deleteTodo', () => {
     const id = '1234';
 
     const result = deleteTodo(id);
+
+    expect(result.id).toBe(id);
+  });
+});
+
+describe('incompleteTodo', () => {
+  it('uses INCOMPLETE_TODO type', () => {
+    const result = incompleteTodo();
+
+    expect(result.type).toBe(INCOMPLETE_TODO);
+  });
+
+  it('returns id passed in', () => {
+    const id = '1234';
+
+    const result = incompleteTodo(id);
 
     expect(result.id).toBe(id);
   });

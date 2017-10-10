@@ -16,8 +16,10 @@ describe('TodoListItem', () => {
         <TodoListItem
           id={id}
           isEditing={false}
+          completeTodo={dummyFn}
           deleteTodo={dummyFn}
           editTodo={editTodo}
+          incompleteTodo={dummyFn}
           saveEdit={dummyFn}
           text={'todo text'}
         />
@@ -37,8 +39,10 @@ describe('TodoListItem', () => {
         <TodoListItem
           id={'someId'}
           isEditing
+          completeTodo={dummyFn}
           deleteTodo={dummyFn}
           editTodo={editTodo}
+          incompleteTodo={dummyFn}
           saveEdit={dummyFn}
           text={'todo text'}
         />
@@ -62,7 +66,9 @@ describe('TodoListItem', () => {
         <TodoListItem
           id={id}
           isEditing
+          completeTodo={dummyFn}
           deleteTodo={deleteTodo}
+          incompleteTodo={dummyFn}
           editTodo={dummyFn}
           saveEdit={dummyFn}
           text={'todo text'}

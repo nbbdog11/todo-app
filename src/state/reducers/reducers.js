@@ -1,23 +1,27 @@
 import {
   ADD_TODO,
+  COMPLETE_TODO,
   DELETE_TODO,
+  INCOMPLETE_TODO,
   SAVE_EDIT,
 } from '../actions/actionTypes';
+
+const setTodoState = (state, id, completed) => {
+  const todos = state.todos.map((todo) => {
+    if (todo.id === id) {
+      return Object.assign({}, todo, { completed });
+    }
+    return todo;
+  });
+  return Object.assign({}, state, { todos });
+};
 
 const addTodo = (state, todo) =>
   Object.assign({}, state, {
     todos: [...state.todos, todo],
   });
 
-const completeTodo = (state, id) => {
-  const todos = state.todos.map((todo) => {
-    if (todo.id === id) {
-      return Object.assign({}, todo, { completed: true });
-    }
-    return todo;
-  });
-  return Object.assign({}, state, { todos });
-};
+const completeTodo = (state, id) => setTodoState(state, id, true);
 
 const deleteTodo = (state, id) => {
   const todos = state.todos.filter(todo => todo.id !== id);
@@ -25,6 +29,8 @@ const deleteTodo = (state, id) => {
     todos,
   });
 };
+
+const incompleteTodo = (state, id) => setTodoState(state, id, false);
 
 const saveEdit = (state, { id, text }) => {
   const todos = state.todos.map((todo) => {
@@ -45,10 +51,12 @@ const todoAppReducer = (state = { todos: [] }, action) => {
   switch (action.type) {
     case ADD_TODO:
       return addTodo(state, action.todo);
-    case 'COMPLETE_TODO':
+    case COMPLETE_TODO:
       return completeTodo(state, action.id);
     case DELETE_TODO:
       return deleteTodo(state, action.id);
+    case INCOMPLETE_TODO:
+      return incompleteTodo(state, action.id);
     case SAVE_EDIT:
       return saveEdit(state, action.todo);
     default:

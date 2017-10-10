@@ -1,6 +1,8 @@
 import {
   ADD_TODO,
+  COMPLETE_TODO,
   DELETE_TODO,
+  INCOMPLETE_TODO,
   SAVE_EDIT,
 } from './actionTypes';
 
@@ -10,12 +12,17 @@ const addTodo = todo => ({
 });
 
 const completeTodo = id => ({
-  type: 'COMPLETE_TODO',
+  type: COMPLETE_TODO,
   id,
 });
 
 const deleteTodo = id => ({
   type: DELETE_TODO,
+  id,
+});
+
+const incompleteTodo = id => ({
+  type: INCOMPLETE_TODO,
   id,
 });
 
@@ -28,5 +35,6 @@ export {
   addTodo,
   completeTodo,
   deleteTodo,
+  incompleteTodo,
   saveEdit,
 };
