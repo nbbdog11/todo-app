@@ -1,9 +1,11 @@
 const ADD_TODO = 'ADD_TODO';
+const COMPLETE_TODO = 'COMPLETE_TODO';
 const DELETE_TODO = 'DELETE_TODO';
 const SAVE_EDIT = 'SAVE_EDIT';
 
 export {
   ADD_TODO,
+  COMPLETE_TODO,
   DELETE_TODO,
   SAVE_EDIT,
 };

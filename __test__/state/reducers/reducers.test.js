@@ -1,12 +1,13 @@
 import todoAppReducer from '../../../src/state/reducers/reducers';
 import {
   ADD_TODO,
+  COMPLETE_TODO,
   DELETE_TODO,
   SAVE_EDIT,
 } from '../../../src/state/actions/actionTypes';
 
 describe('todoAppReducer', () => {
-  test('returns original state when action is unknown', () => {
+  it('returns original state when action is unknown', () => {
     const originalState = {
       todos: ['123', '456'],
       activeEdits: ['123'],
@@ -20,10 +21,11 @@ describe('todoAppReducer', () => {
     expect(result).toBe(originalState);
   });
 
-  test('adds todo when action is add', () => {
+  it('adds todo when action is add', () => {
     const firstTodo = {
       id: '123',
       text: 'todo text',
+      completed: true,
     };
     const originalState = {
       todos: [firstTodo],
@@ -31,6 +33,7 @@ describe('todoAppReducer', () => {
     const newTodo = {
       id: '456',
       text: 'new todo',
+      completed: false,
     };
     const addAction = {
       type: ADD_TODO,
@@ -45,7 +48,36 @@ describe('todoAppReducer', () => {
     expect(resultTodos).toContain(newTodo);
   });
 
-  test('deletes todo when action is delete', () => {
+  it('sets completed to true when action is complete', () => {
+    const idForComplete = '456';
+    const firstTodo = {
+      id: '123',
+      text: 'todo text',
+      completed: false,
+    };
+    const todoForComplete = {
+      id: idForComplete,
+      text: 'complete todo',
+      completed: false,
+    };
+    const completedTodo = Object.assign({}, todoForComplete, { completed: true });
+    const originalState = {
+      todos: [firstTodo, todoForComplete],
+    };
+    const completeAction = {
+      type: COMPLETE_TODO,
+      id: idForComplete,
+    };
+
+    const result = todoAppReducer(originalState, completeAction);
+    const resultTodos = result.todos;
+
+    expect(resultTodos).toHaveLength(2);
+    expect(resultTodos).toContain(firstTodo);
+    expect(resultTodos).toContainEqual(completedTodo);
+  });
+
+  it('deletes todo when action is delete', () => {
     const idForDelete = '456';
     const firstTodo = {
       id: '123',
@@ -71,7 +103,7 @@ describe('todoAppReducer', () => {
     expect(resultTodos).not.toContain(todoForDelete);
   });
 
-  test('saves edit when action is save edit', () => {
+  it('saves edit when action is save edit', () => {
     const idForEdit = '456';
     const expectedTodoText = 'updated text for todo';
     const firstTodo = {

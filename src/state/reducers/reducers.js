@@ -9,6 +9,16 @@ const addTodo = (state, todo) =>
     todos: [...state.todos, todo],
   });
 
+const completeTodo = (state, id) => {
+  const todos = state.todos.map((todo) => {
+    if (todo.id === id) {
+      return Object.assign({}, todo, { completed: true });
+    }
+    return todo;
+  });
+  return Object.assign({}, state, { todos });
+};
+
 const deleteTodo = (state, id) => {
   const todos = state.todos.filter(todo => todo.id !== id);
   return Object.assign({}, state, {
@@ -31,10 +41,12 @@ const saveEdit = (state, { id, text }) => {
   });
 };
 
-const todoAppReducer = (state = { todos: [], activeEdits: [] }, action) => {
+const todoAppReducer = (state = { todos: [] }, action) => {
   switch (action.type) {
     case ADD_TODO:
       return addTodo(state, action.todo);
+    case 'COMPLETE_TODO':
+      return completeTodo(state, action.id);
     case DELETE_TODO:
       return deleteTodo(state, action.id);
     case SAVE_EDIT:
