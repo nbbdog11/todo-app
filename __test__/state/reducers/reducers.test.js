@@ -4,13 +4,13 @@ import {
   COMPLETE_TODO,
   DELETE_TODO,
   SAVE_EDIT,
+  TOGGLE_COMPLETED,
 } from '../../../src/state/actions/actionTypes';
 
 describe('todoAppReducer', () => {
   it('returns original state when action is unknown', () => {
     const originalState = {
       todos: ['123', '456'],
-      activeEdits: ['123'],
     };
     const unknownAction = {
       type: 'UNKNOWN_ACTION',
@@ -19,6 +19,12 @@ describe('todoAppReducer', () => {
     const result = todoAppReducer(originalState, unknownAction);
 
     expect(result).toBe(originalState);
+  });
+
+  it('defaults showCompleted to true', () => {
+    const result = todoAppReducer();
+
+    expect(result.showCompleted).toBe(true);
   });
 
   describe('add todo', () => {
@@ -219,5 +225,31 @@ describe('todoAppReducer', () => {
     expect(result.todos).toHaveLength(2);
     expect(result.todos).toContain(firstTodo);
     expect(result.todos).toContainEqual(updatedTodo);
+  });
+
+  describe('toggle completed', () => {
+    it('sets value to true when action is true', () => {
+      const originalState = {};
+      const toggleCompletedAction = {
+        type: TOGGLE_COMPLETED,
+        showCompleted: true,
+      };
+
+      const result = todoAppReducer(originalState, toggleCompletedAction);
+
+      expect(result.showCompleted).toBe(true);
+    });
+
+    it('sets value to false when action is false', () => {
+      const originalState = {};
+      const toggleCompletedAction = {
+        type: TOGGLE_COMPLETED,
+        showCompleted: false,
+      };
+
+      const result = todoAppReducer(originalState, toggleCompletedAction);
+
+      expect(result.showCompleted).toBe(false);
+    });
   });
 });

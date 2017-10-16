@@ -4,6 +4,7 @@ import {
   DELETE_TODO,
   INCOMPLETE_TODO,
   SAVE_EDIT,
+  TOGGLE_COMPLETED,
 } from './actionTypes';
 
 const addTodo = todo => ({
@@ -31,10 +32,16 @@ const saveEdit = todo => ({
   todo,
 });
 
+const toggleCompleted = showCompleted => ({
+  type: TOGGLE_COMPLETED,
+  showCompleted,
+});
+
 export {
   addTodo,
   completeTodo,
   deleteTodo,
   incompleteTodo,
   saveEdit,
+  toggleCompleted,
 };
