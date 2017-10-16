@@ -1,13 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import sortBy from 'sort-by';
 import TodoList from '../components/TodoList';
 
-const TodoListContainer = props => (
-  <TodoList
-    todos={props.todos}
-  />
-);
+const sortIncompleteTodosFirst = (todos) => {
+  return todos.sort(sortBy('completed'));
+};
+
+const TodoListContainer = (props) => {
+  const sortedTodos = sortIncompleteTodosFirst(props.todos);
+
+  return (
+    <TodoList
+      todos={sortedTodos}
+    />
+  );
+};
 
 TodoListContainer.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.object).isRequired,
