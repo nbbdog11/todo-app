@@ -16,10 +16,16 @@ const setTodoState = (state, id, completed) => {
   return Object.assign({}, state, { todos });
 };
 
-const addTodo = (state, todo) =>
-  Object.assign({}, state, {
-    todos: [...state.todos, todo],
+const addTodo = (state, todo) => {
+  const todoForAdd = Object.assign({}, todo, {
+    completed: false,
+    order: state.todos.length + 1,
   });
+
+  return Object.assign({}, state, {
+    todos: [...state.todos, todoForAdd],
+  });
+};
 
 const completeTodo = (state, id) => setTodoState(state, id, true);
 

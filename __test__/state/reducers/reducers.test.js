@@ -21,31 +21,87 @@ describe('todoAppReducer', () => {
     expect(result).toBe(originalState);
   });
 
-  it('adds todo when action is add', () => {
-    const firstTodo = {
-      id: '123',
-      text: 'todo text',
-      completed: true,
-    };
-    const originalState = {
-      todos: [firstTodo],
-    };
-    const newTodo = {
-      id: '456',
-      text: 'new todo',
-      completed: false,
-    };
-    const addAction = {
-      type: ADD_TODO,
-      todo: newTodo,
-    };
+  describe('add todo', () => {
+    it('adds todo when action is add', () => {
+      const firstTodo = {
+        id: '123',
+        text: 'todo text',
+        completed: true,
+        order: 1,
+      };
+      const originalState = {
+        todos: [firstTodo],
+      };
+      const newTodo = {
+        id: '456',
+        text: 'new todo',
+        completed: false,
+        order: 2,
+      };
+      const addAction = {
+        type: ADD_TODO,
+        todo: newTodo,
+      };
 
-    const result = todoAppReducer(originalState, addAction);
-    const resultTodos = result.todos;
+      const result = todoAppReducer(originalState, addAction);
+      const resultTodos = result.todos;
 
-    expect(resultTodos).toHaveLength(2);
-    expect(resultTodos).toContain(firstTodo);
-    expect(resultTodos).toContain(newTodo);
+      expect(resultTodos).toHaveLength(2);
+      expect(resultTodos).toContainEqual(firstTodo);
+      expect(resultTodos).toContainEqual(newTodo);
+    });
+
+    it('sets order property to the number of todos in state', () => {
+      const originalState = {
+        todos: [],
+      };
+      const firstNewTodo = {
+        id: '123',
+        text: 'first new todo',
+        completed: true,
+      };
+      const secondNewTodo = {
+        id: '456',
+        text: 'second new todo',
+        completed: false,
+      };
+      const firstAddAction = {
+        type: ADD_TODO,
+        todo: firstNewTodo,
+      };
+      const secondAddAction = {
+        type: ADD_TODO,
+        todo: secondNewTodo,
+      };
+
+      const firstState = todoAppReducer(originalState, firstAddAction);
+      const result = todoAppReducer(firstState, secondAddAction);
+      const resultTodos = result.todos;
+
+      expect(resultTodos).toHaveLength(2);
+      expect(resultTodos[0]).toHaveProperty('order', 1);
+      expect(resultTodos[1]).toHaveProperty('order', 2);
+    });
+
+    it('sets completed to false', () => {
+      const originalState = {
+        todos: [],
+      };
+      const newTodo = {
+        id: '123',
+        text: 'first new todo',
+      };
+      const addAction = {
+        type: ADD_TODO,
+        todo: newTodo,
+      };
+
+      const result = todoAppReducer(originalState, addAction);
+      const resultTodos = result.todos;
+
+      expect(resultTodos).toHaveLength(1);
+      expect(resultTodos[0]).toHaveProperty('completed', false);
+    });
   });
 
   describe('completion actions', () => {

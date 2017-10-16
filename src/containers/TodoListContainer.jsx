@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 import sortBy from 'sort-by';
 import TodoList from '../components/TodoList';
 
-const sortIncompleteTodosFirst = (todos) => {
-  return todos.sort(sortBy('completed'));
-};
+const sortIncompleteTodosFirst = todos =>
+  todos.sort(sortBy('completed', 'order'));
 
 const TodoListContainer = (props) => {
   const sortedTodos = sortIncompleteTodosFirst(props.todos);
