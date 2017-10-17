@@ -14,23 +14,12 @@ const buildTodoListItem = item => (
 const buildTodoListItems = items =>
   items.map(item => buildTodoListItem(item));
 
-const getCompletionStats = (todos) => {
-  const completedCount = todos.filter(todo => todo.completed).length;
-  const totalCount = todos.length;
-  const completedPercentage = totalCount === 0 ? 0 : (completedCount / totalCount) * 100;
-  return {
-    completedCount,
-    completedPercentage,
-    totalCount,
-  };
-};
-
 const TodoList = (props) => {
   const {
     completedCount,
     completedPercentage,
     totalCount,
-  } = getCompletionStats(props.todos);
+  } = props;
 
   const completionStatsString = `Completed ${completedPercentage.toFixed(2)}%: ${completedCount}/${totalCount}`;
 
@@ -44,7 +33,10 @@ const TodoList = (props) => {
 };
 
 TodoList.propTypes = {
+  completedCount: PropTypes.number.isRequired,
+  completedPercentage: PropTypes.number.isRequired,
   todos: PropTypes.arrayOf(PropTypes.object),
+  totalCount: PropTypes.number.isRequired,
 };
 
 TodoList.defaultProps = {
