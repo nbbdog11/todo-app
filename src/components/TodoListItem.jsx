@@ -44,6 +44,7 @@ const TodoListItem = (props) => {
       <CompleteTodoCheckbox
         completeTodo={completeTodo}
         incompleteTodo={incompleteTodo}
+        isCompleted={props.isComplete}
       />
       {textElement}
       <button

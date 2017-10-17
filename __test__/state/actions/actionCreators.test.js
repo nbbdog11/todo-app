@@ -4,6 +4,7 @@ import {
   DELETE_TODO,
   INCOMPLETE_TODO,
   SAVE_EDIT,
+  TOGGLE_COMPLETED,
 } from '../../../src/state/actions/actionTypes';
 
 import {
@@ -12,6 +13,7 @@ import {
   deleteTodo,
   incompleteTodo,
   saveEdit,
+  toggleCompleted,
 } from '../../../src/state/actions/actionCreators';
 
 describe('addTodo', () => {
@@ -99,5 +101,31 @@ describe('saveEdit', () => {
     const result = saveEdit(saveTodo);
 
     expect(result.todo).toBe(saveTodo);
+  });
+});
+
+describe('toggleCompleted', () => {
+  it('uses TOGGLE_COMPLETED type', () => {
+    const result = toggleCompleted();
+
+    expect(result.type).toBe(TOGGLE_COMPLETED);
+  });
+
+  describe('show value', () => {
+    it('is true when true is passed in', () => {
+      const toggleCompletedValue = true;
+
+      const result = toggleCompleted(toggleCompletedValue);
+
+      expect(result.showCompleted).toBe(toggleCompletedValue);
+    });
+
+    it('is false when false is passed in', () => {
+      const toggleCompletedValue = false;
+
+      const result = toggleCompleted(toggleCompletedValue);
+
+      expect(result.showCompleted).toBe(toggleCompletedValue);
+    });
   });
 });

@@ -15,6 +15,7 @@ const handleChange = (event, completeCb, incompleteCb) => {
 
 const CompleteTodoCheckbox = props => (
   <input
+    defaultChecked={props.isCompleted}
     onChange={event => handleChange(event, props.completeTodo, props.incompleteTodo)}
     style={style}
     type="checkbox"
@@ -24,6 +25,7 @@ const CompleteTodoCheckbox = props => (
 CompleteTodoCheckbox.propTypes = {
   completeTodo: PropTypes.func.isRequired,
   incompleteTodo: PropTypes.func.isRequired,
+  isCompleted: PropTypes.bool.isRequired,
 };
 
 export default CompleteTodoCheckbox;

@@ -14,16 +14,29 @@ const buildTodoListItem = item => (
 const buildTodoListItems = items =>
   items.map(item => buildTodoListItem(item));
 
-const TodoList = props => (
-  <div>
-    <p>{`List size: ${props.todos.length}`}</p>
-    <AddTodoFormContainer />
-    {buildTodoListItems(props.todos)}
-  </div>
-);
+const TodoList = (props) => {
+  const {
+    completedCount,
+    completedPercentage,
+    totalCount,
+  } = props;
+
+  const completionStatsString = `Completed ${completedPercentage.toFixed(2)}%: ${completedCount}/${totalCount}`;
+
+  return (
+    <div>
+      <p>{completionStatsString}</p>
+      <AddTodoFormContainer />
+      {buildTodoListItems(props.todos)}
+    </div>
+  );
+};
 
 TodoList.propTypes = {
+  completedCount: PropTypes.number.isRequired,
+  completedPercentage: PropTypes.number.isRequired,
   todos: PropTypes.arrayOf(PropTypes.object),
+  totalCount: PropTypes.number.isRequired,
 };
 
 TodoList.defaultProps = {

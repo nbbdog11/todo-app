@@ -4,6 +4,7 @@ import {
   DELETE_TODO,
   INCOMPLETE_TODO,
   SAVE_EDIT,
+  TOGGLE_COMPLETED,
 } from '../actions/actionTypes';
 
 const setTodoState = (state, id, completed) => {
@@ -16,10 +17,16 @@ const setTodoState = (state, id, completed) => {
   return Object.assign({}, state, { todos });
 };
 
-const addTodo = (state, todo) =>
-  Object.assign({}, state, {
-    todos: [...state.todos, todo],
+const addTodo = (state, todo) => {
+  const todoForAdd = Object.assign({}, todo, {
+    completed: false,
+    order: state.todos.length + 1,
   });
+
+  return Object.assign({}, state, {
+    todos: [...state.todos, todoForAdd],
+  });
+};
 
 const completeTodo = (state, id) => setTodoState(state, id, true);
 
@@ -47,7 +54,17 @@ const saveEdit = (state, { id, text }) => {
   });
 };
 
-const todoAppReducer = (state = { todos: [] }, action) => {
+const toggleCompleted = (state, { showCompleted }) =>
+  Object.assign({}, state, {
+    showCompleted,
+  });
+
+const defaultState = {
+  todos: [],
+  showCompleted: true,
+};
+
+const todoAppReducer = (state = defaultState, action = {}) => {
   switch (action.type) {
     case ADD_TODO:
       return addTodo(state, action.todo);
@@ -59,6 +76,8 @@ const todoAppReducer = (state = { todos: [] }, action) => {
       return incompleteTodo(state, action.id);
     case SAVE_EDIT:
       return saveEdit(state, action.todo);
+    case TOGGLE_COMPLETED:
+      return toggleCompleted(state, action);
     default:
       break;
   }

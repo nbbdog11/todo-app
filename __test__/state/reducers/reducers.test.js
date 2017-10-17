@@ -4,13 +4,13 @@ import {
   COMPLETE_TODO,
   DELETE_TODO,
   SAVE_EDIT,
+  TOGGLE_COMPLETED,
 } from '../../../src/state/actions/actionTypes';
 
 describe('todoAppReducer', () => {
   it('returns original state when action is unknown', () => {
     const originalState = {
       todos: ['123', '456'],
-      activeEdits: ['123'],
     };
     const unknownAction = {
       type: 'UNKNOWN_ACTION',
@@ -21,31 +21,93 @@ describe('todoAppReducer', () => {
     expect(result).toBe(originalState);
   });
 
-  it('adds todo when action is add', () => {
-    const firstTodo = {
-      id: '123',
-      text: 'todo text',
-      completed: true,
-    };
-    const originalState = {
-      todos: [firstTodo],
-    };
-    const newTodo = {
-      id: '456',
-      text: 'new todo',
-      completed: false,
-    };
-    const addAction = {
-      type: ADD_TODO,
-      todo: newTodo,
-    };
+  it('defaults showCompleted to true', () => {
+    const result = todoAppReducer();
 
-    const result = todoAppReducer(originalState, addAction);
-    const resultTodos = result.todos;
+    expect(result.showCompleted).toBe(true);
+  });
 
-    expect(resultTodos).toHaveLength(2);
-    expect(resultTodos).toContain(firstTodo);
-    expect(resultTodos).toContain(newTodo);
+  describe('add todo', () => {
+    it('adds todo when action is add', () => {
+      const firstTodo = {
+        id: '123',
+        text: 'todo text',
+        completed: true,
+        order: 1,
+      };
+      const originalState = {
+        todos: [firstTodo],
+      };
+      const newTodo = {
+        id: '456',
+        text: 'new todo',
+        completed: false,
+        order: 2,
+      };
+      const addAction = {
+        type: ADD_TODO,
+        todo: newTodo,
+      };
+
+      const result = todoAppReducer(originalState, addAction);
+      const resultTodos = result.todos;
+
+      expect(resultTodos).toHaveLength(2);
+      expect(resultTodos).toContainEqual(firstTodo);
+      expect(resultTodos).toContainEqual(newTodo);
+    });
+
+    it('sets order property to the number of todos in state', () => {
+      const originalState = {
+        todos: [],
+      };
+      const firstNewTodo = {
+        id: '123',
+        text: 'first new todo',
+        completed: true,
+      };
+      const secondNewTodo = {
+        id: '456',
+        text: 'second new todo',
+        completed: false,
+      };
+      const firstAddAction = {
+        type: ADD_TODO,
+        todo: firstNewTodo,
+      };
+      const secondAddAction = {
+        type: ADD_TODO,
+        todo: secondNewTodo,
+      };
+
+      const firstState = todoAppReducer(originalState, firstAddAction);
+      const result = todoAppReducer(firstState, secondAddAction);
+      const resultTodos = result.todos;
+
+      expect(resultTodos).toHaveLength(2);
+      expect(resultTodos[0]).toHaveProperty('order', 1);
+      expect(resultTodos[1]).toHaveProperty('order', 2);
+    });
+
+    it('sets completed to false', () => {
+      const originalState = {
+        todos: [],
+      };
+      const newTodo = {
+        id: '123',
+        text: 'first new todo',
+      };
+      const addAction = {
+        type: ADD_TODO,
+        todo: newTodo,
+      };
+
+      const result = todoAppReducer(originalState, addAction);
+      const resultTodos = result.todos;
+
+      expect(resultTodos).toHaveLength(1);
+      expect(resultTodos[0]).toHaveProperty('completed', false);
+    });
   });
 
   describe('completion actions', () => {
@@ -163,5 +225,31 @@ describe('todoAppReducer', () => {
     expect(result.todos).toHaveLength(2);
     expect(result.todos).toContain(firstTodo);
     expect(result.todos).toContainEqual(updatedTodo);
+  });
+
+  describe('toggle completed', () => {
+    it('sets value to true when action is true', () => {
+      const originalState = {};
+      const toggleCompletedAction = {
+        type: TOGGLE_COMPLETED,
+        showCompleted: true,
+      };
+
+      const result = todoAppReducer(originalState, toggleCompletedAction);
+
+      expect(result.showCompleted).toBe(true);
+    });
+
+    it('sets value to false when action is false', () => {
+      const originalState = {};
+      const toggleCompletedAction = {
+        type: TOGGLE_COMPLETED,
+        showCompleted: false,
+      };
+
+      const result = todoAppReducer(originalState, toggleCompletedAction);
+
+      expect(result.showCompleted).toBe(false);
+    });
   });
 });
