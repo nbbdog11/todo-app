@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import createStore from '../src/state/store/storeCreator';
 import TodoListContainer from './containers/TodoListContainer';
 
-import './shared.css';
+import './shared.scss';
 
 const App = () => (<TodoListContainer />);
 

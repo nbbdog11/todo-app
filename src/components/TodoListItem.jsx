@@ -48,12 +48,14 @@ const TodoListItem = (props) => {
       />
       {textElement}
       <button
+        aria-label="Edit Button"
         disabled={props.isEditing}
         onClick={editTodo}
-      >Edit</button>
+      ><i className="fa fa-pencil-square-o" aria-hidden="true" /></button>
       <button
+        aria-label="Delete Button"
         onClick={deleteTodo}
-      >Delete</button>
+      ><i className="fa fa-trash-o" aria-hidden="true" /></button>
     </div>
   );
 };

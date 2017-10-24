@@ -76,7 +76,7 @@ describe('TodoListItem', () => {
       );
       const component = shallow(subject);
 
-      const deleteButton = component.find('button').findWhere(el => el.text() === 'Delete').first();
+      const deleteButton = component.find('button').last();
       deleteButton.simulate('click');
 
       expect(deleteTodo).toBeCalledWith(id);

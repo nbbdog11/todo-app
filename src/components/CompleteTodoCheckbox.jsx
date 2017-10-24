@@ -15,6 +15,7 @@ const handleChange = (event, completeCb, incompleteCb) => {
 
 const CompleteTodoCheckbox = props => (
   <input
+    aria-label="Complete Todo Checkbox"
     defaultChecked={props.isCompleted}
     onChange={event => handleChange(event, props.completeTodo, props.incompleteTodo)}
     style={style}

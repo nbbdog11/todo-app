@@ -8,20 +8,6 @@ Enzyme.configure({ adapter: new Adapter() });
 
 describe('AddTodoForm', () => {
   describe('submit button', () => {
-    it('text is "Add"', () => {
-      const subject = (
-        <AddTodoForm
-          handleInputChange={dummyFn}
-          handleSubmit={dummyFn}
-          text=""
-        />
-      );
-      const component = mount(subject);
-      const submitButton = component.find('button').first();
-
-      expect(submitButton.text()).toEqual('Add');
-    });
-
     it('is disabled when text is empty', () => {
       const subject = (
         <AddTodoForm
