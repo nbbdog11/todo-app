@@ -24,6 +24,7 @@ class EditTodoInput extends React.Component {
         style={formStyle}
       >
         <input
+          aria-label="Edit Input"
           defaultValue={this.props.defaultValue}
           onBlur={this.props.saveChanges}
           onChange={this.props.handleInput}

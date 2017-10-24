@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 const ShowCompletedToggle = ({ showCompleted, toggleCompleted }) => (
   <span>
     <input
+      aria-label="Show Completed Checkbox"
       checked={showCompleted}
       type="checkbox"
       onChange={toggleCompleted}
