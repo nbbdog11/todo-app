@@ -14,7 +14,9 @@ class EditTodoInput extends React.Component {
   };
 
   componentDidMount() {
-    this.todoInput.focus();
+    if (this.todoInput) {
+      this.todoInput.focus();
+    }
   }
 
   render() {

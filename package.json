@@ -9,7 +9,8 @@
     "lint": "eslint ./src/**/*.js ./src/**/*.jsx ./__test__/**/*.js",
     "build": "npm run lint && npm run test && webpack",
     "dev-server": "webpack-dev-server",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "prop-types": "^15.6.0",
