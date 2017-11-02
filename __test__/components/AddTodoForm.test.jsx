@@ -1,5 +1,5 @@
 import React from 'react';
-import Enzyme, { mount } from 'enzyme';
+import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import dummyFn from '../helpers/test-helpers';
 import AddTodoForm from '../../src/components/AddTodoForm';
@@ -16,7 +16,7 @@ describe('AddTodoForm', () => {
           text=""
         />
       );
-      const component = mount(subject);
+      const component = shallow(subject);
       const submitButton = component.find('button').first();
 
       expect(submitButton.prop('disabled')).toEqual(true);
@@ -30,7 +30,7 @@ describe('AddTodoForm', () => {
           text="text prop"
         />
       );
-      const component = mount(subject);
+      const component = shallow(subject);
       const submitButton = component.find('button').first();
 
       expect(submitButton.prop('disabled')).toEqual(false);
@@ -46,7 +46,7 @@ describe('AddTodoForm', () => {
         text="text prop"
       />
     );
-    const component = mount(subject);
+    const component = shallow(subject);
 
     afterEach(() => {
       handleSubmit.mockReset();
@@ -77,7 +77,7 @@ describe('AddTodoForm', () => {
           text={textPropValue}
         />
       );
-      const component = mount(subject);
+      const component = shallow(subject);
       const input = component.find('input').first();
 
       expect(input.prop('value')).toEqual(textPropValue);
@@ -90,7 +90,7 @@ describe('AddTodoForm', () => {
           handleSubmit={dummyFn}
         />
       );
-      const component = mount(subject);
+      const component = shallow(subject);
       const input = component.find('input').first();
 
       expect(input.prop('value')).toEqual('');
@@ -104,7 +104,7 @@ describe('AddTodoForm', () => {
           handleSubmit={dummyFn}
         />
       );
-      const component = mount(subject);
+      const component = shallow(subject);
       const input = component.find('input').first();
       input.simulate('change');
       input.simulate('change');

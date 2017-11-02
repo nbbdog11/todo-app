@@ -1,5 +1,5 @@
 import React from 'react';
-import Enzyme, { mount } from 'enzyme';
+import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import dummyFn from '../helpers/test-helpers';
 import EditTodoInput from '../../src/components/EditTodoInput';
@@ -12,7 +12,7 @@ describe('EditTodoInput', () => {
       handleInput={dummyFn}
       saveChanges={dummyFn}
     />);
-    const component = mount(subject);
+    const component = shallow(subject);
 
     expect(component.find('form')).toHaveLength(1);
   });
@@ -25,7 +25,7 @@ describe('EditTodoInput', () => {
         saveChanges={saveChanges}
       />
     );
-    const component = mount(subject);
+    const component = shallow(subject);
 
     afterEach(() => {
       saveChanges.mockReset();
@@ -54,7 +54,7 @@ describe('EditTodoInput', () => {
         handleInput={dummyFn}
         saveChanges={dummyFn}
       />);
-      const component = mount(subject);
+      const component = shallow(subject);
       const input = component.find('input').first();
 
       expect(input.props().defaultValue).toEqual(defaultValue);
@@ -65,7 +65,7 @@ describe('EditTodoInput', () => {
         handleInput={dummyFn}
         saveChanges={dummyFn}
       />);
-      const component = mount(subject);
+      const component = shallow(subject);
       const input = component.find('input').first();
 
       expect(input.props().defaultValue).toEqual('');
@@ -79,7 +79,7 @@ describe('EditTodoInput', () => {
       saveChanges={dummyFn}
     />);
 
-    const component = mount(subject);
+    const component = shallow(subject);
     const input = component.find('input');
     input.simulate('change');
     input.simulate('change');
