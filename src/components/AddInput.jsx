@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const AddTodoForm = props => (
+const AddInput = props => (
   <form onSubmit={props.handleSubmit}>
     <input
       aria-label="Add Input"
       value={props.text}
-      onChange={props.handleInputChange}
+      onChange={event => props.handleInputChange(event.target.value)}
     />
     <button
       aria-label="Add Button"
@@ -16,14 +16,14 @@ const AddTodoForm = props => (
   </form>
 );
 
-AddTodoForm.propTypes = {
+AddInput.propTypes = {
   handleInputChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   text: PropTypes.string,
 };
 
-AddTodoForm.defaultProps = {
+AddInput.defaultProps = {
   text: '',
 };
 
-export default AddTodoForm;
+export default AddInput;

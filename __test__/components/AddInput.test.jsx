@@ -2,15 +2,15 @@ import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import dummyFn from '../helpers/test-helpers';
-import AddTodoForm from '../../src/components/AddTodoForm';
+import AddInput from '../../src/components/AddInput';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('AddTodoForm', () => {
+describe('AddInput', () => {
   describe('submit button', () => {
     it('is disabled when text is empty', () => {
       const subject = (
-        <AddTodoForm
+        <AddInput
           handleInputChange={dummyFn}
           handleSubmit={dummyFn}
           text=""
@@ -24,7 +24,7 @@ describe('AddTodoForm', () => {
 
     it('is enabled when text has a value', () => {
       const subject = (
-        <AddTodoForm
+        <AddInput
           handleInputChange={dummyFn}
           handleSubmit={dummyFn}
           text="text prop"
@@ -40,7 +40,7 @@ describe('AddTodoForm', () => {
   describe('submits', () => {
     const handleSubmit = jest.fn();
     const subject = (
-      <AddTodoForm
+      <AddInput
         handleInputChange={dummyFn}
         handleSubmit={handleSubmit}
         text="text prop"
@@ -71,7 +71,7 @@ describe('AddTodoForm', () => {
     it('gets value from prop', () => {
       const textPropValue = 'some text prop value';
       const subject = (
-        <AddTodoForm
+        <AddInput
           handleInputChange={dummyFn}
           handleSubmit={dummyFn}
           text={textPropValue}
@@ -85,7 +85,7 @@ describe('AddTodoForm', () => {
 
     it('defaults to empty string when text prop is not passed in', () => {
       const subject = (
-        <AddTodoForm
+        <AddInput
           handleInputChange={dummyFn}
           handleSubmit={dummyFn}
         />
@@ -98,19 +98,19 @@ describe('AddTodoForm', () => {
 
     it('handles changes', () => {
       const handleInputChange = jest.fn();
+      const changeEventValue = 'new string';
       const subject = (
-        <AddTodoForm
+        <AddInput
           handleInputChange={handleInputChange}
           handleSubmit={dummyFn}
         />
       );
       const component = shallow(subject);
       const input = component.find('input').first();
-      input.simulate('change');
-      input.simulate('change');
-      input.simulate('change');
+      input.simulate('change', { target: { value: changeEventValue } });
 
-      expect(handleInputChange.mock.calls).toHaveLength(3);
+      expect(handleInputChange.mock.calls).toHaveLength(1);
+      expect(handleInputChange).toHaveBeenCalledWith(changeEventValue);
     });
   });
 });

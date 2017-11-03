@@ -26,7 +26,7 @@ const TodoList = (props) => {
   return (
     <div>
       <p>{completionStatsString}</p>
-      <AddTodoFormContainer />
+      <AddTodoFormContainer listId={props.id} />
       {buildTodoListItems(props.todos)}
     </div>
   );
@@ -35,6 +35,7 @@ const TodoList = (props) => {
 TodoList.propTypes = {
   completedCount: PropTypes.number.isRequired,
   completedPercentage: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   todos: PropTypes.arrayOf(PropTypes.object),
   totalCount: PropTypes.number.isRequired,
 };
