@@ -1,4 +1,5 @@
 import {
+  ADD_LIST,
   ADD_TODO,
   COMPLETE_TODO,
   DELETE_TODO,
@@ -6,6 +7,11 @@ import {
   SAVE_EDIT,
   TOGGLE_COMPLETED,
 } from './actionTypes';
+
+const addList = list => ({
+  type: ADD_LIST,
+  list,
+});
 
 const addTodo = todo => ({
   type: ADD_TODO,
@@ -38,6 +44,7 @@ const toggleCompleted = showCompleted => ({
 });
 
 export {
+  addList,
   addTodo,
   completeTodo,
   deleteTodo,

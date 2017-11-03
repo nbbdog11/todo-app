@@ -1,4 +1,5 @@
 import {
+  ADD_LIST,
   ADD_TODO,
   COMPLETE_TODO,
   DELETE_TODO,
@@ -15,6 +16,14 @@ const setTodoState = (state, id, completed) => {
     return todo;
   });
   return Object.assign({}, state, { todos });
+};
+
+const addList = (state, list) => {
+  const newLists = state.lists;
+  newLists.set(list.id, list);
+  return Object.assign({}, state, {
+    lists: newLists,
+  });
 };
 
 const addTodo = (state, todo) => {
@@ -60,12 +69,15 @@ const toggleCompleted = (state, { showCompleted }) =>
   });
 
 const defaultState = {
+  lists: new Map(),
   todos: [],
   showCompleted: true,
 };
 
 const todoAppReducer = (state = defaultState, action = {}) => {
   switch (action.type) {
+    case ADD_LIST:
+      return addList(state, action.list);
     case ADD_TODO:
       return addTodo(state, action.todo);
     case COMPLETE_TODO:
