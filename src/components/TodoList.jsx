@@ -21,7 +21,7 @@ const TodoList = (props) => {
     totalCount,
   } = props;
 
-  const completionStatsString = `Completed ${completedPercentage.toFixed(2)}%: ${completedCount}/${totalCount}`;
+  const completionStatsString = `Completed ${completedPercentage}%: ${completedCount}/${totalCount}`;
 
   return (
     <div>
@@ -34,7 +34,7 @@ const TodoList = (props) => {
 
 TodoList.propTypes = {
   completedCount: PropTypes.number.isRequired,
-  completedPercentage: PropTypes.number.isRequired,
+  completedPercentage: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   todos: PropTypes.arrayOf(PropTypes.object),
   totalCount: PropTypes.number.isRequired,

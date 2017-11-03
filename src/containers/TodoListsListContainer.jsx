@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { generate as generateId } from 'shortid';
 import { addList } from '../state/actions/actionCreators';
 import AddInput from '../components/AddInput';
+import TodoListTable from '../components/TodoListTable';
 
 class TodoListsListContainer extends React.Component {
   static propTypes = {
@@ -15,15 +16,6 @@ class TodoListsListContainer extends React.Component {
   state = {
     text: '',
   }
-
-  buildListElements = lists =>
-    lists.map(list => (
-      <div key={list.id}>
-        <Link to={`/list/${list.id}`}>
-          {list.name}
-        </Link>
-      </div>
-    ));
 
   handleInputChange = (text) => {
     this.setState({
@@ -44,17 +36,17 @@ class TodoListsListContainer extends React.Component {
   }
 
   render() {
-    const listElements = this.buildListElements(this.props.lists);
     return (
       <div>
+        <h1>To Do Lists</h1>
         <AddInput
           handleInputChange={this.handleInputChange}
           handleSubmit={this.handleSubmit}
           text={this.state.text}
         />
-        <div>
-          {listElements}
-        </div>
+        <TodoListTable
+          lists={this.props.lists}
+        />
       </div>
     );
   }
