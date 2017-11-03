@@ -1,5 +1,6 @@
 import todoAppReducer from '../../../src/state/reducers/reducers';
 import {
+  ADD_LIST,
   ADD_TODO,
   COMPLETE_TODO,
   DELETE_TODO,
@@ -27,10 +28,55 @@ describe('todoAppReducer', () => {
     expect(result.showCompleted).toBe(true);
   });
 
+  describe('add list', () => {
+    it('adds list when action is add list', () => {
+      const list = {
+        id: '123',
+        name: 'New List',
+      };
+      const addListAction = {
+        type: ADD_LIST,
+        list,
+      };
+      const originalState = {
+        lists: new Map(),
+      };
+
+      const result = todoAppReducer(originalState, addListAction);
+      const resultLists = result.lists;
+
+      expect([...resultLists.values()]).toHaveLength(1);
+      expect(resultLists.get(list.id)).toEqual(list);
+    });
+
+    it('does not add list if the id already exists', () => {
+      const list = {
+        id: '123',
+        name: 'New List',
+      };
+      const addListAction = {
+        type: ADD_LIST,
+        list,
+      };
+      const originalLists = new Map();
+      originalLists.set(list.id, list);
+      const originalState = {
+        lists: originalLists,
+      };
+
+      const result = todoAppReducer(originalState, addListAction);
+      const resultLists = result.lists;
+
+      expect([...resultLists.values()]).toHaveLength(1);
+      expect(resultLists.get(list.id)).toEqual(list);
+    });
+  });
+
   describe('add todo', () => {
     it('adds todo when action is add', () => {
       const firstTodo = {
         id: '123',
+        listId: '456',
         text: 'todo text',
         completed: true,
         order: 1,
@@ -40,6 +86,7 @@ describe('todoAppReducer', () => {
       };
       const newTodo = {
         id: '456',
+        listId: '789',
         text: 'new todo',
         completed: false,
         order: 2,
@@ -63,11 +110,13 @@ describe('todoAppReducer', () => {
       };
       const firstNewTodo = {
         id: '123',
+        listId: '456',
         text: 'first new todo',
         completed: true,
       };
       const secondNewTodo = {
         id: '456',
+        listId: '789',
         text: 'second new todo',
         completed: false,
       };
@@ -95,6 +144,7 @@ describe('todoAppReducer', () => {
       };
       const newTodo = {
         id: '123',
+        listId: '456',
         text: 'first new todo',
       };
       const addAction = {

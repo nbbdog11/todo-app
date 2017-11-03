@@ -3,21 +3,21 @@ import PropTypes from 'prop-types';
 import { generate as generateId } from 'shortid';
 import { connect } from 'react-redux';
 import { addTodo } from '../state/actions/actionCreators';
-import AddTodoForm from '../components/AddTodoForm';
+import AddInput from '../components/AddInput';
 
 class AddTodoFormContainer extends React.Component {
   static propTypes = {
     addTodo: PropTypes.func.isRequired,
+    listId: PropTypes.string.isRequired,
   }
 
   state = {
     text: '',
   }
 
-  handleInputChange = (event) => {
-    event.preventDefault();
+  handleInputChange = (text) => {
     this.setState({
-      text: event.target.value,
+      text,
     });
   }
 
@@ -25,6 +25,7 @@ class AddTodoFormContainer extends React.Component {
     event.preventDefault();
     const todo = {
       id: generateId(),
+      listId: this.props.listId,
       text: this.state.text,
     };
     this.props.addTodo(todo);
@@ -35,7 +36,7 @@ class AddTodoFormContainer extends React.Component {
 
   render() {
     return (
-      <AddTodoForm
+      <AddInput
         handleInputChange={this.handleInputChange}
         handleSubmit={this.handleSubmit}
         text={this.state.text}

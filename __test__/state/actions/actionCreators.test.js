@@ -1,4 +1,5 @@
 import {
+  ADD_LIST,
   ADD_TODO,
   COMPLETE_TODO,
   DELETE_TODO,
@@ -8,6 +9,7 @@ import {
 } from '../../../src/state/actions/actionTypes';
 
 import {
+  addList,
   addTodo,
   completeTodo,
   deleteTodo,
@@ -16,6 +18,24 @@ import {
   toggleCompleted,
 } from '../../../src/state/actions/actionCreators';
 
+describe('addList', () => {
+  it('uses ADD_LIST type', () => {
+    const result = addList();
+
+    expect(result.type).toBe(ADD_LIST);
+  });
+
+  it('returns list passed in', () => {
+    const list = {
+      id: '123',
+      name: 'Todo List',
+    };
+
+    const result = addList(list);
+
+    expect(result.list).toEqual(list);
+  });
+});
 describe('addTodo', () => {
   it('uses ADD_TODO type', () => {
     const result = addTodo();
@@ -26,6 +46,7 @@ describe('addTodo', () => {
   it('returns todo object passed in', () => {
     const todo = {
       id: '123',
+      listId: '456',
       text: 'this is a todo',
     };
 
