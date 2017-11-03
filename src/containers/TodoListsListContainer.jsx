@@ -18,11 +18,11 @@ class TodoListsListContainer extends React.Component {
 
   buildListElements = lists =>
     lists.map(list => (
-      <li key={list.id}>
+      <div key={list.id}>
         <Link to={`/list/${list.id}`}>
           {list.name}
         </Link>
-      </li>
+      </div>
     ));
 
   handleInputChange = (text) => {
@@ -52,9 +52,9 @@ class TodoListsListContainer extends React.Component {
           handleSubmit={this.handleSubmit}
           text={this.state.text}
         />
-        <ul>
+        <div>
           {listElements}
-        </ul>
+        </div>
       </div>
     );
   }
