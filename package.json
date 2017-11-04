@@ -13,8 +13,7 @@
     "test:watch": "jest --watch"
   },
   "pre-commit": [
-    "lint",
-    "test"
+    "lint"
   ],
   "dependencies": {
     "prop-types": "^15.6.0",
