@@ -6,7 +6,7 @@ import {
   Switch,
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import createStore from '../src/state/store/storeCreator';
+import { getStore } from '../src/state/store/store';
 import TodoListsListContainer from './containers/TodoListsListContainer';
 import TodoListContainer from './containers/TodoListContainer';
 
@@ -21,7 +21,7 @@ const App = () => (
   </BrowserRouter>
 );
 
-const store = createStore();
+const store = getStore();
 
 render(
   <Provider store={store}>

@@ -1,6 +1,7 @@
-import store from '../App';
+import { getStore } from '../state/store/store';
 
 const getTodosForList = (listId) => {
+  const store = getStore();
   const state = store.getState();
   const todos = state.todos.filter(todo => todo.listId === listId);
   return todos;
