@@ -20,4 +20,17 @@ const getCompletionStatsForList = (listId) => {
   };
 };
 
-export default getCompletionStatsForList;
+const getNameForList = (listId) => {
+  const store = getStore();
+  const state = store.getState();
+  const list = state.lists.get(listId);
+  if (list) {
+    return list.name;
+  }
+  return 'List';
+};
+
+export {
+  getCompletionStatsForList,
+  getNameForList,
+};
