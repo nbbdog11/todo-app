@@ -1,6 +1,7 @@
-import store from '../App';
+import { getStore } from '../state/store/store';
 
 const getTodosForList = (listId) => {
+  const store = getStore();
   const state = store.getState();
   const todos = state.todos.filter(todo => todo.listId === listId);
   return todos;
@@ -19,4 +20,17 @@ const getCompletionStatsForList = (listId) => {
   };
 };
 
-export default getCompletionStatsForList;
+const getNameForList = (listId) => {
+  const store = getStore();
+  const state = store.getState();
+  const list = state.lists.get(listId);
+  if (list) {
+    return list.name;
+  }
+  return 'List';
+};
+
+export {
+  getCompletionStatsForList,
+  getNameForList,
+};

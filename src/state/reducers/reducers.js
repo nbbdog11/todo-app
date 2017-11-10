@@ -1,3 +1,4 @@
+import { defaultState } from '../store/store';
 import {
   ADD_LIST,
   ADD_TODO,
@@ -67,12 +68,6 @@ const toggleCompleted = (state, { showCompleted }) =>
   Object.assign({}, state, {
     showCompleted,
   });
-
-const defaultState = {
-  lists: new Map(),
-  todos: [],
-  showCompleted: true,
-};
 
 const todoAppReducer = (state = defaultState, action = {}) => {
   switch (action.type) {
