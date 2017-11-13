@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const style = {
   display: 'inline',
+  marginTop: '1px',
+  verticalAlign: 'middle',
+  width: '3%',
 };
 
 const handleChange = (event, completeCb, incompleteCb) => {

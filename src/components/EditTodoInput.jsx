@@ -20,6 +20,10 @@ class EditTodoInput extends React.Component {
   }
 
   render() {
+    const inputStyle = {
+      width: '80%',
+    };
+
     return (
       <form
         onSubmit={this.props.saveChanges}
@@ -31,6 +35,7 @@ class EditTodoInput extends React.Component {
           onBlur={this.props.saveChanges}
           onChange={this.props.handleInput}
           ref={(input) => { this.todoInput = input; }}
+          style={inputStyle}
           type="text"
         />
       </form>

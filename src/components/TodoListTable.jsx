@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getCompletionStatsForList } from '../helpers/api';
+import rowContainerStyle from '../styles/containers';
 
 const buildTableRow = (list) => {
   const {
@@ -9,17 +10,19 @@ const buildTableRow = (list) => {
     name,
   } = list;
   const { completedPercentage } = getCompletionStatsForList(id);
+  const linkSpanStyle = {
+    display: 'inline-block',
+    width: '90%',
+  };
   return (
-    <tr key={id}>
-      <td>
+    <div key={id} style={rowContainerStyle}>
+      <span style={linkSpanStyle}>
         <Link to={`/list/${id}`}>
           {name}
         </Link>
-      </td>
-      <td>
-        <p>{`${completedPercentage}%`}</p>
-      </td>
-    </tr>
+      </span>
+      <span>{`${completedPercentage}%`}</span>
+    </div>
   );
 };
 
@@ -30,11 +33,7 @@ const TodoListTable = ({ lists }) => {
     return null;
   }
   return (
-    <table>
-      <tbody>
-        {buildTableRows(lists)}
-      </tbody>
-    </table>
+    buildTableRows(lists)
   );
 };
 
