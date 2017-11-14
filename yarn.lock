@@ -2,9 +2,28 @@
 # yarn lockfile v1
 
 
+"@types/cheerio@*":
+  version "0.22.5"
+  resolved "https://registry.yarnpkg.com/@types/cheerio/-/cheerio-0.22.5.tgz#db749e8470d98f103d51407db9bee5a8b9d20d45"
+
+"@types/enzyme@^3.1.4":
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/@types/enzyme/-/enzyme-3.1.4.tgz#5d6fc570786345a8fb10d9b3643335746612f9d8"
+  dependencies:
+    "@types/cheerio" "*"
+    "@types/react" "*"
+
+"@types/jest@^21.1.6":
+  version "21.1.6"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-21.1.6.tgz#9467945ce33261e4fdd14276576951aa130515aa"
+
 "@types/node@^6.0.46":
   version "6.0.88"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.88.tgz#f618f11a944f6a18d92b5c472028728a3e3d4b66"
+
+"@types/react@*":
+  version "16.0.22"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.22.tgz#19ad106e124aceebd2b4d430a278d55413ee8759"
 
 abab@^1.0.3:
   version "1.0.4"
