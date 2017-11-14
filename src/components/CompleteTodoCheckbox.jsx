@@ -1,30 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Checkbox from './common/Checkbox';
 
-const style = {
-  display: 'inline',
-  marginTop: '1px',
-  verticalAlign: 'middle',
-  width: '3%',
+const CompleteTodoCheckbox = ({ completeTodo, incompleteTodo, isCompleted }) => {
+  const onChange = event => (event.target.checked ? completeTodo() : incompleteTodo());
+
+  return (
+    <Checkbox
+      checked={isCompleted}
+      label="Complete Todo Checkbox"
+      onChange={onChange}
+    />
+  );
 };
-
-const handleChange = (event, completeCb, incompleteCb) => {
-  if (event.target.checked) {
-    completeCb();
-  } else {
-    incompleteCb();
-  }
-};
-
-const CompleteTodoCheckbox = props => (
-  <input
-    aria-label="Complete Todo Checkbox"
-    defaultChecked={props.isCompleted}
-    onChange={event => handleChange(event, props.completeTodo, props.incompleteTodo)}
-    style={style}
-    type="checkbox"
-  />
-);
 
 CompleteTodoCheckbox.propTypes = {
   completeTodo: PropTypes.func.isRequired,
