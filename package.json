@@ -6,7 +6,7 @@
   "author": "Scott Wagner <scottywags16@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint ./src/**/*.js ./src/**/*.jsx ./__test__/**/*.js",
+    "lint": "eslint ./src/**/*.js ./src/**/*.jsx ./__test__/**/*.js ./__test__/**/*.jsx",
     "build": "npm run lint && npm run test && webpack",
     "dev-server": "webpack-dev-server",
     "test": "jest",
@@ -26,6 +26,8 @@
     "sort-by": "^1.2.0"
   },
   "devDependencies": {
+    "@types/enzyme": "^3.1.4",
+    "@types/jest": "^21.1.6",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",
     "babel-jest": "^21.2.0",

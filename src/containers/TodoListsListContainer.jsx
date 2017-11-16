@@ -6,6 +6,11 @@ import { generate as generateId } from 'shortid';
 import { addList } from '../state/actions/actionCreators';
 import AddInput from '../components/AddInput';
 import TodoListTable from '../components/TodoListTable';
+import {
+  headerStyle,
+  headerSubElementStyle,
+} from '../styles/headers';
+import contentStyle from '../styles/content';
 
 class TodoListsListContainer extends React.Component {
   static propTypes = {
@@ -36,17 +41,27 @@ class TodoListsListContainer extends React.Component {
   }
 
   render() {
+    const titleStyle = Object.assign(
+      {},
+      headerSubElementStyle, {
+        gridColumn: '2 / 3',
+      },
+    );
     return (
       <div>
-        <h1>To Do Lists</h1>
-        <AddInput
-          handleInputChange={this.handleInputChange}
-          handleSubmit={this.handleSubmit}
-          text={this.state.text}
-        />
-        <TodoListTable
-          lists={this.props.lists}
-        />
+        <div style={headerStyle}>
+          <h1 style={titleStyle}>To Do Lists</h1>
+        </div>
+        <div style={contentStyle}>
+          <AddInput
+            handleInputChange={this.handleInputChange}
+            handleSubmit={this.handleSubmit}
+            text={this.state.text}
+          />
+          <TodoListTable
+            lists={this.props.lists}
+          />
+        </div>
       </div>
     );
   }

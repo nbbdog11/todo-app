@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Checkbox from './common/Checkbox';
 
 const ShowCompletedToggle = ({ showCompleted, toggleCompleted }) => (
   <span>
-    <input
-      aria-label="Show Completed Checkbox"
+    <Checkbox
       checked={showCompleted}
-      type="checkbox"
+      label="Show Completed Checkbox"
       onChange={toggleCompleted}
     />
     Show completed

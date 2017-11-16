@@ -1,8 +1,4 @@
 import React from 'react';
-import {
-  Link,
-  withRouter,
-} from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import sortBy from 'sort-by';
@@ -10,8 +6,10 @@ import {
   getCompletionStatsForList,
   getNameForList,
 } from '../helpers/api';
+import TodoListHeaderBar from '../components/TodoListHeaderBar';
 import TodoList from '../components/TodoList';
 import ShowCompletedToggleContainer from '../containers/ShowCompletedToggleContainer';
+import contentStyle from '../styles/content';
 
 const filterCompletedTodos = todos =>
   todos.filter(todo => !todo.completed);
@@ -28,18 +26,17 @@ const TodoListContainer = ({ match, showCompleted, todos }) => {
 
   return (
     <div>
-      <div>
-        <Link to="/">
-          <i className="fa fa-arrow-left" aria-hidden="true" />Go Back
-        </Link>
-      </div>
-      <h2>{name}</h2>
-      <ShowCompletedToggleContainer />
-      <TodoList
-        id={listId}
-        todos={sortedTodos}
-        {...completionStats}
+      <TodoListHeaderBar
+        name={name}
       />
+      <div style={contentStyle}>
+        <ShowCompletedToggleContainer />
+        <TodoList
+          id={listId}
+          todos={sortedTodos}
+          {...completionStats}
+        />
+      </div>
     </div>
   );
 };
@@ -59,8 +56,6 @@ const mapStateToProps = ({ showCompleted, todos }, ownProps) => ({
   todos: todos.filter(todo => todo.listId === ownProps.match.params.id),
 });
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-  )(TodoListContainer),
-);
+export default connect(
+  mapStateToProps,
+)(TodoListContainer);

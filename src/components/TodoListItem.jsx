@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from './common/Button';
 import CompleteTodoCheckbox from '../components/CompleteTodoCheckbox';
 import EditTodoInputContainer from '../containers/EditTodoInputContainer';
+import rowContainerStyle from '../styles/containers';
 
 const TodoListItem = (props) => {
   const completeTodo = () => {
@@ -30,7 +32,11 @@ const TodoListItem = (props) => {
     props.saveEdit(todo);
   };
 
-  const textStyle = props.isComplete ? { textDecoration: 'line-through' } : { };
+  const textStyle = {
+    display: 'inline-block',
+    textDecoration: props.isComplete ? 'line-through' : '',
+    width: '80%',
+  };
 
   const textElement = props.isEditing ?
     (<EditTodoInputContainer
@@ -40,22 +46,22 @@ const TodoListItem = (props) => {
     <span style={textStyle}>{props.text}</span>;
 
   return (
-    <div>
+    <div style={rowContainerStyle}>
       <CompleteTodoCheckbox
         completeTodo={completeTodo}
         incompleteTodo={incompleteTodo}
         isCompleted={props.isComplete}
       />
       {textElement}
-      <button
-        aria-label="Edit Button"
+      <Button
+        label="Edit Button"
         disabled={props.isEditing}
         onClick={editTodo}
-      ><i className="fa fa-pencil-square-o" aria-hidden="true" /></button>
-      <button
-        aria-label="Delete Button"
+      ><i className="fa fa-pencil-square-o" aria-hidden="true" /></Button>
+      <Button
+        label="Delete Button"
         onClick={deleteTodo}
-      ><i className="fa fa-trash-o" aria-hidden="true" /></button>
+      ><i className="fa fa-trash-o" aria-hidden="true" /></Button>
     </div>
   );
 };

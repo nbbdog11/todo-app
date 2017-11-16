@@ -9,17 +9,21 @@ const buildTableRow = (list) => {
     name,
   } = list;
   const { completedPercentage } = getCompletionStatsForList(id);
+
+  const gridStyle = {
+    display: 'grid',
+    gridTemplateColumns: '4fr 1fr',
+  };
+
   return (
-    <tr key={id}>
-      <td>
+    <div key={id} style={gridStyle}>
+      <div>
         <Link to={`/list/${id}`}>
           {name}
         </Link>
-      </td>
-      <td>
-        <p>{`${completedPercentage}%`}</p>
-      </td>
-    </tr>
+      </div>
+      <div>{`${completedPercentage}%`}</div>
+    </div>
   );
 };
 
@@ -29,12 +33,9 @@ const TodoListTable = ({ lists }) => {
   if (!lists || lists.length === 0) {
     return null;
   }
+
   return (
-    <table>
-      <tbody>
-        {buildTableRows(lists)}
-      </tbody>
-    </table>
+    buildTableRows(lists)
   );
 };
 
