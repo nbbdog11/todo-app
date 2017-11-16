@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from './common/Button';
 import CompleteTodoCheckbox from '../components/CompleteTodoCheckbox';
 import EditTodoInputContainer from '../containers/EditTodoInputContainer';
 import rowContainerStyle from '../styles/containers';
@@ -31,11 +32,6 @@ const TodoListItem = (props) => {
     props.saveEdit(todo);
   };
 
-  const buttonStyle = {
-    margin: '0 3 0 3',
-    verticalAlign: 'middle',
-  };
-
   const textStyle = {
     display: 'inline-block',
     textDecoration: props.isComplete ? 'line-through' : '',
@@ -57,17 +53,15 @@ const TodoListItem = (props) => {
         isCompleted={props.isComplete}
       />
       {textElement}
-      <button
-        aria-label="Edit Button"
+      <Button
+        label="Edit Button"
         disabled={props.isEditing}
         onClick={editTodo}
-        style={buttonStyle}
-      ><i className="fa fa-pencil-square-o" aria-hidden="true" /></button>
-      <button
-        aria-label="Delete Button"
+      ><i className="fa fa-pencil-square-o" aria-hidden="true" /></Button>
+      <Button
+        label="Delete Button"
         onClick={deleteTodo}
-        style={buttonStyle}
-      ><i className="fa fa-trash-o" aria-hidden="true" /></button>
+      ><i className="fa fa-trash-o" aria-hidden="true" /></Button>
     </div>
   );
 };

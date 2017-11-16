@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from './common/Button';
 
-const AddInput = props => (
-  <form onSubmit={props.handleSubmit}>
+const AddInput = ({ handleInputChange, handleSubmit, text }) => (
+  <form onSubmit={handleSubmit}>
     <input
       aria-label="Add Input"
-      value={props.text}
-      onChange={event => props.handleInputChange(event.target.value)}
+      value={text}
+      onChange={event => handleInputChange(event.target.value)}
     />
-    <button
-      aria-label="Add Button"
-      onClick={props.handleSubmit}
-      disabled={props.text.length < 1}
-    ><i className="fa fa-plus" aria-hidden="true" /></button>
+    <Button
+      label="Add Button"
+      onClick={handleSubmit}
+      disabled={text.length < 1}
+    ><i className="fa fa-plus" aria-hidden="true" /></Button>
   </form>
 );
 

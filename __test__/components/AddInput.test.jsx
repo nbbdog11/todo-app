@@ -1,5 +1,5 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
+import Enzyme, { render, mount, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import dummyFn from '../test-helpers/test-helpers';
 import AddInput from '../../src/components/AddInput';
@@ -16,7 +16,7 @@ describe('AddInput', () => {
           text=""
         />
       );
-      const component = shallow(subject);
+      const component = render(subject);
       const submitButton = component.find('button').first();
 
       expect(submitButton.prop('disabled')).toEqual(true);
@@ -30,7 +30,7 @@ describe('AddInput', () => {
           text="text prop"
         />
       );
-      const component = shallow(subject);
+      const component = render(subject);
       const submitButton = component.find('button').first();
 
       expect(submitButton.prop('disabled')).toEqual(false);
@@ -46,13 +46,13 @@ describe('AddInput', () => {
         text="text prop"
       />
     );
-    const component = shallow(subject);
 
     afterEach(() => {
       handleSubmit.mockReset();
     });
 
     it('on form submit event', () => {
+      const component = shallow(subject);
       const form = component.find('form').first();
       form.simulate('submit');
 
@@ -60,6 +60,7 @@ describe('AddInput', () => {
     });
 
     it('on submit button click', () => {
+      const component = mount(subject);
       const submitButton = component.find('button').first();
       submitButton.simulate('click');
 

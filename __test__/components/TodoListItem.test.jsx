@@ -1,5 +1,5 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
+import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import dummyFn from '../test-helpers/test-helpers';
 import TodoListItem from '../../src/components/TodoListItem';
@@ -24,8 +24,7 @@ describe('TodoListItem', () => {
           text={'todo text'}
         />
       );
-      const component = shallow(subject);
-
+      const component = mount(subject);
       const editButton = component.find('button').first();
       editButton.simulate('click');
 
@@ -47,9 +46,8 @@ describe('TodoListItem', () => {
           text={'todo text'}
         />
       );
-      const component = shallow(subject);
-
-      const editButton = component.find('button').first();
+      const component = mount(subject);
+      const editButton = component.find('Button').first();
       editButton.simulate('click');
 
       expect(editButton.prop('disabled')).toEqual(true);
@@ -74,8 +72,7 @@ describe('TodoListItem', () => {
           text={'todo text'}
         />
       );
-      const component = shallow(subject);
-
+      const component = mount(subject);
       const deleteButton = component.find('button').last();
       deleteButton.simulate('click');
 
