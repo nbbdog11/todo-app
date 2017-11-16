@@ -5,11 +5,11 @@ import sortBy from 'sort-by';
 import {
   getCompletionStatsForList,
   getNameForList,
-} from '../helpers/api';
-import TodoListHeaderBar from '../components/TodoListHeaderBar';
-import TodoList from '../components/TodoList';
-import ShowCompletedToggleContainer from '../containers/ShowCompletedToggleContainer';
-import contentStyle from '../styles/content';
+} from '../../helpers/api';
+import TodoListHeaderBar from '../../components/singleListPage/TodoListHeaderBar';
+import TodoList from '../../components/singleListPage/TodoList';
+import ShowCompletedToggleContainer from './ShowCompletedToggleContainer';
+import contentStyle from '../../styles/content';
 
 const filterCompletedTodos = todos =>
   todos.filter(todo => !todo.completed);

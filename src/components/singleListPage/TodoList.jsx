@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TodoListItemContainer from '../containers/TodoListItemContainer';
-import AddTodoFormContainer from '../containers/AddTodoFormContainer';
+import TodoListItemContainer from '../../containers/singleListPage/TodoListItemContainer';
+import AddTodoFormContainer from '../../containers/singleListPage/AddTodoFormContainer';
 
 const buildTodoListItem = item => (
   <TodoListItemContainer

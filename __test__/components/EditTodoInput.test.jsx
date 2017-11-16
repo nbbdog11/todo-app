@@ -2,7 +2,7 @@ import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import dummyFn from '../test-helpers/test-helpers';
-import EditTodoInput from '../../src/components/EditTodoInput';
+import EditTodoInput from '../../src/components/singleListPage/EditTodoInput';
 
 Enzyme.configure({ adapter: new Adapter() });
 

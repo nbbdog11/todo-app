@@ -6,8 +6,8 @@ import {
   deleteTodo,
   incompleteTodo,
   saveEdit,
-} from '../state/actions/actionCreators';
-import TodoListItem from '../components/TodoListItem';
+} from '../../state/actions/actionCreators';
+import TodoListItem from '../../components/singleListPage/TodoListItem';
 
 class TodoListItemContainer extends React.Component {
   static propTypes = {

@@ -8,7 +8,7 @@ import {
 import { Provider } from 'react-redux';
 import { getStore } from '../src/state/store/store';
 import TodoListsListContainer from './containers/TodoListsListContainer';
-import TodoListContainer from './containers/TodoListContainer';
+import TodoListContainer from './containers/singleListPage/TodoListContainer';
 
 import './shared.scss';
 
