@@ -14,7 +14,12 @@ const filterCompletedTodos = todos =>
 const sortIncompleteTodosFirst = todos =>
   todos.sort(sortBy('completed', 'order'));
 
-const TodoListContainer = ({ match, showCompleted, todos }) => {
+const TodoListContainer = (props) => {
+  const {
+    match,
+    showCompleted,
+    todos,
+  } = props;
   const listId = match.params.id;
   const name = getNameForList(listId);
   const completionStats = getCompletionStatsForList(listId);

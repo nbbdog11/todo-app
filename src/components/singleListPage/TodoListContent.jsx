@@ -5,13 +5,20 @@ import AddTodoFormContainer from '../../containers/singleListPage/AddTodoFormCon
 import ShowCompletedToggleContainer from '../../containers/singleListPage/ShowCompletedToggleContainer';
 import contentStyle from '../../styles/content';
 
-const buildTodoListItem = item => (
-  <TodoListItemContainer
-    id={item.id}
-    key={item.id}
-    text={item.text}
-  />
-);
+const buildTodoListItem = (item) => {
+  const {
+    id,
+    text,
+  } = item;
+
+  return (
+    <TodoListItemContainer
+      id={id}
+      key={id}
+      text={text}
+    />
+  );
+};
 
 const buildTodoListItems = items =>
   items.map(item => buildTodoListItem(item));

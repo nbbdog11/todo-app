@@ -6,16 +6,19 @@ import {
   headerSubElementStyle,
 } from '../../styles/headers';
 
-const TodoListHeaderBar = ({ name }) => (
-  <div style={headerStyle}>
-    <div style={headerSubElementStyle}>
-      <Link to="/">
-        <i className="fa fa-arrow-left" aria-hidden="true" />Go Back
-      </Link>
+const TodoListHeaderBar = (props) => {
+  const { name } = props;
+  return (
+    <div style={headerStyle}>
+      <div style={headerSubElementStyle}>
+        <Link to="/">
+          <i className="fa fa-arrow-left" aria-hidden="true" />Go Back
+        </Link>
+      </div>
+      <h2 style={headerSubElementStyle}>{name}</h2>
     </div>
-    <h2 style={headerSubElementStyle}>{name}</h2>
-  </div>
-);
+  );
+};
 
 TodoListHeaderBar.propTypes = {
   name: PropTypes.string.isRequired,

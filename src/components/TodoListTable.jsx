@@ -33,7 +33,8 @@ const buildTableRow = (list) => {
 
 const buildTableRows = lists => lists.map(buildTableRow);
 
-const TodoListTable = ({ lists }) => {
+const TodoListTable = (props) => {
+  const { lists } = props;
   if (!lists || lists.length === 0) {
     return null;
   }

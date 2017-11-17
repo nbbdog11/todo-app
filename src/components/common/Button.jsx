@@ -6,14 +6,23 @@ const style = {
   verticalAlign: 'middle',
 };
 
-const Button = ({ children, disabled, label, onClick }) => (
-  <button
-    aria-label={label}
-    disabled={disabled}
-    onClick={onClick}
-    style={style}
-  >{children}</button>
-);
+const Button = (props) => {
+  const {
+    children,
+    disabled,
+    label,
+    onClick,
+  } = props;
+
+  return (
+    <button
+      aria-label={label}
+      disabled={disabled}
+      onClick={onClick}
+      style={style}
+    >{children}</button>
+  );
+};
 
 Button.propTypes = {
   children: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
