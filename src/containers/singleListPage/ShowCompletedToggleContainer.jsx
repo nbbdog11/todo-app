@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { toggleCompleted as toggleCompletedAction } from '../state/actions/actionCreators';
-import ShowCompletedToggle from '../components/ShowCompletedToggle';
+import { toggleCompleted as toggleCompletedAction } from '../../state/actions/actionCreators';
+import ShowCompletedToggle from '../../components/singleListPage/ShowCompletedToggle';
 
 const ShowCompletedToggleContainer = ({ showCompleted, toggleCompleted }) => (
   <ShowCompletedToggle

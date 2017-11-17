@@ -2,7 +2,7 @@ import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import dummyFn from '../test-helpers/test-helpers';
-import TodoListItem from '../../src/components/TodoListItem';
+import TodoListItem from '../../src/components/singleListPage/TodoListItem';
 
 Enzyme.configure({ adapter: new Adapter() });
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Checkbox from './common/Checkbox';
+import Checkbox from '../common/Checkbox';
 
 const ShowCompletedToggle = ({ showCompleted, toggleCompleted }) => (
   <span>

@@ -63,10 +63,9 @@ describe('Checkbox', () => {
 
   it('uses correct style', () => {
     const expectedStyle = {
-      display: 'inline',
       marginTop: '1px',
       verticalAlign: 'middle',
-      width: '3%',
+      width: '5%',
     };
 
     const subject = <Checkbox />;

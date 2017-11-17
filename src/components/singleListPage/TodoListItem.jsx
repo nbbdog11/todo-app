@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from './common/Button';
-import CompleteTodoCheckbox from '../components/CompleteTodoCheckbox';
-import EditTodoInputContainer from '../containers/EditTodoInputContainer';
-import rowContainerStyle from '../styles/containers';
+import Button from '../common/Button';
+import CompleteTodoCheckbox from './CompleteTodoCheckbox';
+import EditTodoInputContainer from '../../containers/singleListPage/EditTodoInputContainer';
+import rowContainerStyle from '../../styles/containers';
 
 const TodoListItem = (props) => {
   const completeTodo = () => {

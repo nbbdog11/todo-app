@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { generate as generateId } from 'shortid';
 import { connect } from 'react-redux';
-import { addTodo } from '../state/actions/actionCreators';
-import AddInput from '../components/AddInput';
+import { addTodo } from '../../state/actions/actionCreators';
+import AddInput from '../../components/AddInput';
 
 class AddTodoFormContainer extends React.Component {
   static propTypes = {

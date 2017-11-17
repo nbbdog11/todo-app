@@ -8,26 +8,24 @@ import {
 import { Provider } from 'react-redux';
 import { getStore } from '../src/state/store/store';
 import TodoListsListContainer from './containers/TodoListsListContainer';
-import TodoListContainer from './containers/TodoListContainer';
+import TodoListContainer from './containers/singleListPage/TodoListContainer';
 
 import './shared.scss';
 
-const App = () => (
-  <BrowserRouter>
-    <Switch>
-      <Route exact path="/" component={TodoListsListContainer} />
-      <Route path="/list/:id" component={TodoListContainer} />
-    </Switch>
-  </BrowserRouter>
-);
-
 const store = getStore();
 
-render(
+const App = () => (
   <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('app'),
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={TodoListsListContainer} />
+        <Route path="/list/:id" component={TodoListContainer} />
+      </Switch>
+    </BrowserRouter>
+  </Provider>
 );
 
-export default store;
+render(
+  <App />,
+  document.getElementById('app'),
+);

@@ -15,6 +15,10 @@ const buildTableRow = (list) => {
     gridTemplateColumns: '4fr 1fr',
   };
 
+  const percentageColumnStyle = {
+    justifySelf: 'center',
+  };
+
   return (
     <div key={id} style={gridStyle}>
       <div>
@@ -22,7 +26,7 @@ const buildTableRow = (list) => {
           {name}
         </Link>
       </div>
-      <div>{`${completedPercentage}%`}</div>
+      <div style={percentageColumnStyle}>{`${completedPercentage}%`}</div>
     </div>
   );
 };

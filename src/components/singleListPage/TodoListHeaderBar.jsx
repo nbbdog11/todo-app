@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {
   headerStyle,
   headerSubElementStyle,
-} from '../styles/headers';
+} from '../../styles/headers';
 
 const TodoListHeaderBar = ({ name }) => (
   <div style={headerStyle}>

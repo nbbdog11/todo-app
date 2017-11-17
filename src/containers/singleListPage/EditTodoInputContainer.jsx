@@ -1,6 +1,6 @@
 import React from 'react';
 import PropType from 'prop-types';
-import EditTodoInput from '../components/EditTodoInput';
+import EditTodoInput from '../../components/singleListPage/EditTodoInput';
 
 class EditItemInputContainer extends React.Component {
   static propTypes = {

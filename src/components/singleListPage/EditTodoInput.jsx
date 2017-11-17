@@ -1,6 +1,6 @@
 import React from 'react';
 import PropType from 'prop-types';
-import formStyle from '../styles/form';
+import formStyle from '../../styles/form';
 
 class EditTodoInput extends React.Component {
   static propTypes = {
