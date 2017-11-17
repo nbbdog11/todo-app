@@ -6,10 +6,7 @@ import {
   getCompletionStatsForList,
   getNameForList,
 } from '../../helpers/api';
-import TodoListHeaderBar from '../../components/singleListPage/TodoListHeaderBar';
 import TodoList from '../../components/singleListPage/TodoList';
-import ShowCompletedToggleContainer from './ShowCompletedToggleContainer';
-import contentStyle from '../../styles/content';
 
 const filterCompletedTodos = todos =>
   todos.filter(todo => !todo.completed);
@@ -24,20 +21,21 @@ const TodoListContainer = ({ match, showCompleted, todos }) => {
   const filteredTodos = showCompleted ? todos : filterCompletedTodos(todos);
   const sortedTodos = sortIncompleteTodosFirst(filteredTodos);
 
+  const {
+    completedCount,
+    completedPercentage,
+    totalCount,
+  } = completionStats;
+
   return (
-    <div>
-      <TodoListHeaderBar
-        name={name}
-      />
-      <div style={contentStyle}>
-        <ShowCompletedToggleContainer />
-        <TodoList
-          id={listId}
-          todos={sortedTodos}
-          {...completionStats}
-        />
-      </div>
-    </div>
+    <TodoList
+      completedCount={completedCount}
+      completedPercentage={completedPercentage}
+      id={listId}
+      name={name}
+      todos={sortedTodos}
+      totalCount={totalCount}
+    />
   );
 };
 
