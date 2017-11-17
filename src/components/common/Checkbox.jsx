@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const style = {
-  display: 'inline',
   marginTop: '1px',
   verticalAlign: 'middle',
-  width: '3%',
+  width: '5%',
 };
 
 const Checkbox = ({ checked, label, onChange }) => (
