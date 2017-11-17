@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import Button from './common/Button';
 
 const AddInput = (props) => {
-  const { handleInputChange, handleSubmit, text } = props;
+  const {
+    handleInputChange,
+    handleSubmit,
+    text,
+  } = props;
+
   return (
     <form onSubmit={handleSubmit}>
       <input
