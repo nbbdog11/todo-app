@@ -162,5 +162,29 @@ describe('api', () => {
         expect(result.completedPercentage).toBe('33.33');
       });
     });
+
+    describe('totalCount', () => {
+      it('is 0 when there are no todos', () => {
+        const result = getCompletionStatsForList('some-list');
+
+        expect(result.totalCount).toBe(0);
+      });
+
+      it('equals the number of todos in the given list', () => {
+        const listId = 'list-id';
+        const todo = {
+          listId,
+        };
+        const todos = [todo, todo];
+        const state = {
+          todos,
+        };
+        preSetStateInStore(state);
+
+        const result = getCompletionStatsForList(listId);
+
+        expect(result.totalCount).toBe(2);
+      });
+    });
   });
 });
