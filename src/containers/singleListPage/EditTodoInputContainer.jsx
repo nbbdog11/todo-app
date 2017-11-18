@@ -17,14 +17,12 @@ class EditItemInputContainer extends React.Component {
   }
 
   handleInput = (event) => {
-    event.preventDefault();
     this.setState({
       value: event.target.value,
     });
   }
 
-  saveChanges = (event) => {
-    event.preventDefault();
+  saveChanges = () => {
     this.props.save(this.state.value);
   }
 
