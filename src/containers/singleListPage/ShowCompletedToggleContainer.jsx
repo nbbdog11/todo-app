@@ -4,12 +4,19 @@ import PropTypes from 'prop-types';
 import { toggleCompleted as toggleCompletedAction } from '../../state/actions/actionCreators';
 import ShowCompletedToggle from '../../components/singleListPage/ShowCompletedToggle';
 
-const ShowCompletedToggleContainer = ({ showCompleted, toggleCompleted }) => (
-  <ShowCompletedToggle
-    showCompleted={showCompleted}
-    toggleCompleted={event => toggleCompleted(event.target.checked)}
-  />
-);
+const ShowCompletedToggleContainer = (props) => {
+  const {
+    showCompleted,
+    toggleCompleted,
+  } = props;
+
+  return (
+    <ShowCompletedToggle
+      showCompleted={showCompleted}
+      toggleCompleted={event => toggleCompleted(event.target.checked)}
+    />
+  );
+};
 
 ShowCompletedToggleContainer.propTypes = {
   showCompleted: PropTypes.bool,

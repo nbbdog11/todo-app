@@ -21,8 +21,7 @@ class AddTodoFormContainer extends React.Component {
     });
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault();
+  handleSubmit = () => {
     const todo = {
       id: generateId(),
       listId: this.props.listId,

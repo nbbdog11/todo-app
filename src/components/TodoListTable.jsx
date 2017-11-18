@@ -1,50 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { getCompletionStatsForList } from '../helpers/api';
+import TodoListTableRowContainer from '../containers/TodoListTableRowContainer';
 
-const buildTableRow = (list) => {
-  const {
-    id,
-    name,
-  } = list;
-  const { completedPercentage } = getCompletionStatsForList(id);
-
-  const gridStyle = {
-    display: 'grid',
-    gridTemplateColumns: '4fr 1fr',
-  };
-
-  const percentageColumnStyle = {
-    justifySelf: 'center',
-  };
-
-  return (
-    <div key={id} style={gridStyle}>
-      <div>
-        <Link to={`/list/${id}`}>
-          {name}
-        </Link>
-      </div>
-      <div style={percentageColumnStyle}>{`${completedPercentage}%`}</div>
-    </div>
-  );
-};
-
-const buildTableRows = lists => lists.map(buildTableRow);
-
-const TodoListTable = ({ lists }) => {
+const TodoListTable = (props) => {
+  const { lists } = props;
   if (!lists || lists.length === 0) {
     return null;
   }
 
   return (
-    buildTableRows(lists)
+    lists.map(list => (
+      <TodoListTableRowContainer
+        key={list.id}
+        list={list}
+      />
+    ))
   );
 };
 
 TodoListTable.propTypes = {
-  lists: PropTypes.arrayOf(PropTypes.object).isRequired,
+  lists: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
 };
 
 export default TodoListTable;

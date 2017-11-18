@@ -7,12 +7,17 @@ const getTodosForList = (listId) => {
   return todos;
 };
 
+const formatCompletedPercentage = completedPercentage =>
+  (Number.isInteger(completedPercentage) ?
+    completedPercentage.toString() :
+    completedPercentage.toFixed(2));
+
 const getCompletionStatsForList = (listId) => {
   const todos = getTodosForList(listId);
   const completedCount = todos.filter(todo => todo.completed).length;
   const totalCount = todos.length;
   const completedPercentageFull = totalCount === 0 ? 0 : (completedCount / totalCount) * 100;
-  const completedPercentage = completedPercentageFull.toFixed(2);
+  const completedPercentage = formatCompletedPercentage(completedPercentageFull);
   return {
     completedCount,
     completedPercentage,

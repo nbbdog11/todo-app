@@ -7,15 +7,23 @@ const style = {
   width: '5%',
 };
 
-const Checkbox = ({ checked, label, onChange }) => (
-  <input
-    aria-label={label}
-    checked={checked}
-    onChange={onChange}
-    style={style}
-    type="checkbox"
-  />
-);
+const Checkbox = (props) => {
+  const {
+    checked,
+    label,
+    onChange,
+  } = props;
+
+  return (
+    <input
+      aria-label={label}
+      checked={checked}
+      onChange={onChange}
+      style={style}
+      type="checkbox"
+    />
+  );
+};
 
 Checkbox.propTypes = {
   checked: PropTypes.bool,
