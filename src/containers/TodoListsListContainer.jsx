@@ -74,9 +74,7 @@ const mapDispatchToProps = dispatch => ({
   addList: list => dispatch(addList(list)),
 });
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(TodoListsListContainer),
-);
+export default withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(TodoListsListContainer));
