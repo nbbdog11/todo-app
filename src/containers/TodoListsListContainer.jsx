@@ -28,7 +28,8 @@ class TodoListsListContainer extends React.Component {
     });
   }
 
-  handleSubmit = () => {
+  handleSubmit = (event) => {
+    event.preventDefault();
     const list = {
       id: generateId(),
       name: this.state.text,
