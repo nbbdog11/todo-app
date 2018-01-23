@@ -21,7 +21,7 @@ describe('TodoListItem', () => {
           editTodo={editTodo}
           incompleteTodo={dummyFn}
           saveEdit={dummyFn}
-          text={'todo text'}
+          text="todo text"
         />
       );
       const component = mount(subject);
@@ -36,14 +36,14 @@ describe('TodoListItem', () => {
 
       const subject = (
         <TodoListItem
-          id={'someId'}
+          id="someId"
           isEditing
           completeTodo={dummyFn}
           deleteTodo={dummyFn}
           editTodo={editTodo}
           incompleteTodo={dummyFn}
           saveEdit={dummyFn}
-          text={'todo text'}
+          text="todo text"
         />
       );
       const component = mount(subject);
@@ -69,7 +69,7 @@ describe('TodoListItem', () => {
           incompleteTodo={dummyFn}
           editTodo={dummyFn}
           saveEdit={dummyFn}
-          text={'todo text'}
+          text="todo text"
         />
       );
       const component = mount(subject);

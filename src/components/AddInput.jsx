@@ -20,7 +20,8 @@ const AddInput = (props) => {
         label="Add Button"
         onClick={handleSubmit}
         disabled={text.length < 1}
-      ><i className="fa fa-plus" aria-hidden="true" /></Button>
+      ><i className="fa fa-plus" aria-hidden="true" />
+      </Button>
     </form>
   );
 };
